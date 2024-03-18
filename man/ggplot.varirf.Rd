@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot.varirf.R
 \name{ggplot.varirf}
 \alias{ggplot.varirf}
-\title{ggplot.varirf: Plot impulse responses with ggplot2}
+\title{ggplot.varirf: Plot impulse responses of VAR and SVAR with ggplot2}
 \usage{
 \method{ggplot}{varirf}(irf)
 }
@@ -13,21 +13,7 @@
 plot
 }
 \description{
-ggplot.varirf: Plot impulse responses with ggplot2
-}
-\examples{
-data(Canada)
-var.2c <- VAR(Canada, p = 2, type = "const")
-amat <- diag(4)
-diag(amat) <- NA
-amat[2, 1] <- NA
-amat[4, 1] <- NA
-## Estimation method direct
-svar.d <- SVAR(x = var.2c, estmethod = "direct", Amat = amat, Bmat = NULL,
-hessian = TRUE, method="BFGS")
-## IRF and plot
-svar.d.irf <- irf(svar.d)
-ggplot(svar.d.irf)
+ggplot.varirf: Plot impulse responses of VAR and SVAR with ggplot2
 }
 \references{
 Victor Espinoza, (2022),

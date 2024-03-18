@@ -1,9 +1,8 @@
-#' ggplot.varirf: Plot impulse responses with ggplot2
+#' ggplot.varirf: Plot impulse responses of VAR and SVAR with ggplot2
 #'
 #' @param irf a list of impulse responses
 #'
 #' @return plot
-#' @export
 #' @import stats
 #' @importFrom ggplot2 ggplot facet_grid scale_linetype_manual
 #' @importFrom ggplot2 geom_hline scale_x_continuous
@@ -16,20 +15,7 @@
 #' stackoverflow.
 #' @author Victor Espinoza (stackoverflow), Koichi (Koiti) Yano
 #'
-#' @examples
-#' data(Canada)
-#' var.2c <- VAR(Canada, p = 2, type = "const")
-#' amat <- diag(4)
-#' diag(amat) <- NA
-#' amat[2, 1] <- NA
-#' amat[4, 1] <- NA
-#' ## Estimation method direct
-#' svar.d <- SVAR(x = var.2c, estmethod = "direct", Amat = amat, Bmat = NULL,
-#' hessian = TRUE, method="BFGS")
-#' ## IRF and plot
-#' svar.d.irf <- irf(svar.d)
-#' ggplot(svar.d.irf)
-
+#' @export
 "ggplot.varirf" <- function(irf){
 
   if (class(irf) %in% "varirf") {

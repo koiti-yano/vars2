@@ -1,8 +1,7 @@
-#' ggplot: generic function
+#' ggplot: Plot impulse responses of VAR and SVAR with ggplot2
 #'
 #' @param irf a list of impulse responses
 #' @examples
-#'
 #' data(Canada)
 #' ## For VAR
 #' var.2c <- VAR(Canada, p = 2, type = "const")
@@ -14,8 +13,7 @@
 #' amat <- diag(4)
 #' diag(amat) <- NA
 #' svar.a <- SVAR(var.2c, estmethod = "direct", Amat = amat)
-#' irf.sa <- irf(svar.a, impulse = "e", response = c("e", "prod", "rw", "U"), boot =
-#' TRUE)
+#' irf.sa <- irf(svar.a)
 #' ggplot(irf.sa)
 #' @export
 

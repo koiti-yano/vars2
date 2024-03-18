@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot.R
 \name{ggplot}
 \alias{ggplot}
-\title{ggplot: generic function}
+\title{ggplot: Plot impulse responses of VAR and SVAR with ggplot2}
 \usage{
 ggplot(irf)
 }
@@ -10,10 +10,9 @@ ggplot(irf)
 \item{irf}{a list of impulse responses}
 }
 \description{
-ggplot: generic function
+ggplot: Plot impulse responses of VAR and SVAR with ggplot2
 }
 \examples{
-
 data(Canada)
 ## For VAR
 var.2c <- VAR(Canada, p = 2, type = "const")
@@ -25,7 +24,6 @@ ggplot(irf.2c)
 amat <- diag(4)
 diag(amat) <- NA
 svar.a <- SVAR(var.2c, estmethod = "direct", Amat = amat)
-irf.sa <- irf(svar.a, impulse = "e", response = c("e", "prod", "rw", "U"), boot =
-TRUE)
+irf.sa <- irf(svar.a)
 ggplot(irf.sa)
 }
