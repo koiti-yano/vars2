@@ -1,0 +1,30 @@
+Package: vars2
+Type: Package
+Title: Vector Autoregression Models (A modified version of vars)
+Version: 0.1.0
+Author: Bernhard Pfaff [aut, cre], Matthieu Stigler [ctb], Koichi (Koiti) Yano [ctb], Victor Espinoza [ctb]
+Maintainer: Koichi (Koiti) Yano <koiti.yano@ymail.ne.jp>
+Description: Vector Autoregression Models (estimation of VAR, SVAR and SVEC models, lag selection, diagnostic testing, forecasting, causality analysis, forecast error variance decomposition and impulse response functions)
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true 
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+RoxygenNote: 7.3.1
+Imports: 
+    stats,
+    MASS,
+    strucchange,
+    urca,
+    lmtest,
+    sandwich,
+    dplyr,
+    ggplot2,
+    methods,
+    tibble,
+    tidyr,
+    zoo
