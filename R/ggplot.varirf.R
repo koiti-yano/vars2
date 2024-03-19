@@ -1,8 +1,3 @@
-#' ggplot.varirf: Plot impulse responses of VAR and SVAR with ggplot2
-#'
-#' @param irf a list of impulse responses
-#'
-#' @return plot
 #' @import stats
 #' @importFrom ggplot2 ggplot facet_grid scale_linetype_manual
 #' @importFrom ggplot2 geom_hline scale_x_continuous

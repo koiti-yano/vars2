@@ -7,7 +7,9 @@
 ggplot(irf, ...)
 }
 \arguments{
-\item{irf}{a list of impulse responses}
+\item{irf}{impulse responses of VAR or SVAR}
+
+\item{\dots}{further arguments passed to or from other methods.}
 }
 \description{
 Plot method for impulse responses of VAR and SVAR with ggplot2

@@ -32,7 +32,6 @@
 #' selection according to the choosen \code{ic}.
 #' @param ic Character, selects the information criteria, if \code{lag.max} is
 #' not \code{NULL}.
-#' @param x Object with class attribute \sQuote{varest}.
 #' @return A list with class attribute \sQuote{\code{varest}} holding the
 #' following elements:\cr
 #'

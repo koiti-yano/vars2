@@ -32,8 +32,6 @@ selection according to the choosen \code{ic}.}
 
 \item{ic}{Character, selects the information criteria, if \code{lag.max} is
 not \code{NULL}.}
-
-\item{x}{Object with class attribute \sQuote{varest}.}
 }
 \value{
 A list with class attribute \sQuote{\code{varest}} holding the

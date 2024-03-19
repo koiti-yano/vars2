@@ -1,6 +1,8 @@
 #' Plot method for impulse responses of VAR and SVAR with ggplot2
 #'
-#' @param irf a list of impulse responses
+#' @param irf impulse responses of VAR or SVAR
+#' @param \dots further arguments passed to or from other methods.
+#' 
 #' @examples
 #' data(Canada)
 #' ## For VAR
