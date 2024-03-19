@@ -1,4 +1,4 @@
-#' residuals.varest
+#' 
 #' @importFrom stats plot.ts
 #' @importFrom grDevices xy.coords
 #' @importFrom graphics abline axis box lines mtext par title

@@ -16,7 +16,6 @@
 #' irf.sa <- irf(svar.a)
 #' ggplot(irf.sa)
 #' @export
-
 "ggplot" <- function(irf){
   UseMethod("ggplot")
 }

@@ -54,7 +54,6 @@
 #' Phi(var.2c, nstep=4)
 #'
 #' @export Phi
-
 "Phi" <-function(x, nstep=10, ...){
   UseMethod("Phi", x)
 }

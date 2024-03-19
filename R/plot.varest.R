@@ -1,5 +1,6 @@
 #' @importFrom graphics layout
-#' @export plot.varest
+#' @importFrom stats plot.ts
+#' @export
 "plot.varest" <-
 function (x, names = NULL, main.fit = NULL, main.acf = NULL, main.pacf = NULL, ylim.fit = NULL, ylim.resid = NULL, lty.fit = NULL, lty.resid = NULL, lwd.fit = NULL, lwd.resid = NULL, lag.acf = NULL, lag.pacf = NULL, col.fit = NULL, col.resid = NULL, ylab.fit = NULL, ylab.resid = NULL, ylab.acf = NULL, ylab.pacf = NULL, xlab.fit = NULL, xlab.resid = NULL, nc, mar = par("mar"), oma = par("oma"), adj.mtext = NA, padj.mtext = NA, col.mtext = NA, ...)
 {
