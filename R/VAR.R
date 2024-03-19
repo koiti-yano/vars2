@@ -33,8 +33,6 @@
 #' @param ic Character, selects the information criteria, if \code{lag.max} is
 #' not \code{NULL}.
 #' @param x Object with class attribute \sQuote{varest}.
-#' @param digits the number of significant digits to use when printing.
-#' @param \dots further arguments passed to or from other methods.
 #' @return A list with class attribute \sQuote{\code{varest}} holding the
 #' following elements:\cr
 #'

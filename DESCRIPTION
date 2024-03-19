@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: Bernhard Pfaff [aut, cre], Matthieu Stigler [ctb], Koichi (Koiti) Yano [ctb], Victor Espinoza [ctb]
 Maintainer: Koichi (Koiti) Yano <koiti.yano@ymail.ne.jp>
 Description: Vector Autoregression Models (estimation of VAR, SVAR and SVEC models, lag selection, diagnostic testing, forecasting, causality analysis, forecast error variance decomposition and impulse response functions)
-License: `use_gpl3_license()`
+License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true 
 Suggests: 

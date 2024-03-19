@@ -161,7 +161,4 @@
 #' var.2c.stabil <- stability(var.2c, type = "Rec-CUSUM")
 #' plot(var.2c.stabil)
 #' }
-#' @export
-"plot" <- function(x, ...){
-  UseMethod("plot",x)
-}
+NULL

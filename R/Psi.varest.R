@@ -1,4 +1,3 @@
-#' Psi.varest
 #' @import stats
 #' @importFrom methods is
 #' @export

@@ -75,7 +75,6 @@
 #' of the scoring algorithm (used if \code{estmethod = "scoring"}).
 #' @param Amat Matrix with dimension \eqn{(K \times K)} for A- or AB-model.
 #' @param Bmat Matrix with dimension \eqn{(K \times K)} for B- or AB-model.
-#' @param digits the number of significant digits to use when printing.
 #' @param \dots further arguments passed to or from other methods.
 #' @return A list of class \sQuote{\code{svarest}} with the following elements
 #' is returned:\cr

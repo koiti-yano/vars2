@@ -34,10 +34,6 @@ selection according to the choosen \code{ic}.}
 not \code{NULL}.}
 
 \item{x}{Object with class attribute \sQuote{varest}.}
-
-\item{digits}{the number of significant digits to use when printing.}
-
-\item{\dots}{further arguments passed to or from other methods.}
 }
 \value{
 A list with class attribute \sQuote{\code{varest}} holding the

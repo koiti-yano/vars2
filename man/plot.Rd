@@ -57,10 +57,6 @@ plot(x, plot.type = c("multiple", "single"), names = NULL,
    main = NULL, nc, mar = par("mar"), oma = par("oma"), ...)
 }
 \arguments{
-\item{x}{An object of one of the above classes.}
-
-\item{\dots}{Passed to internal plot function.}
-
 \item{addbars}{Integer, number of empty bars in barplot to reserve space for
 legend. If set to zero, no legend will be returned.}
 
@@ -139,6 +135,8 @@ single device, otherwise the plots are shown consecutively.}
 
 \item{sub}{Character, sub title in plot.}
 
+\item{x}{An object of one of the above classes.}
+
 \item{xlab}{Character vector signifying the labels for the x-axis.}
 
 \item{xlab.acf}{Character, xlab for ACF and PACF of residuals and their
@@ -165,6 +163,8 @@ squares in plot.varcheck.}
 \item{ylim.hist}{Vector, ylim for histogram of residuals.}
 
 \item{ylim.resid}{Vector, ylim for residual plot.}
+
+\item{\dots}{Passed to internal plot function.}
 }
 \description{
 Plot method for objects with class attribute \code{varest}, \code{vec2var},

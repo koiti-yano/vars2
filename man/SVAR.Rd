@@ -45,8 +45,6 @@ of the scoring algorithm (used if \code{estmethod = "scoring"}).}
 \command{NULL} for just-identified system.}
 
 \item{\dots}{further arguments passed to or from other methods.}
-
-\item{digits}{the number of significant digits to use when printing.}
 }
 \value{
 A list of class \sQuote{\code{svarest}} with the following elements

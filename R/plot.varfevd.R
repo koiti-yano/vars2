@@ -1,5 +1,6 @@
 #' @importFrom grDevices gray.colors
 #' @importFrom graphics barplot
+#' @importFrom stats plot.ts
 #' @export plot.varfevd
 "plot.varfevd" <-
 function (x, plot.type = c("multiple", "single"), names = NULL, main = NULL, col = NULL, ylim = NULL, ylab = NULL, xlab = NULL, legend = NULL, names.arg = NULL, nc, mar = par("mar"), oma = par("oma"), addbars = 1, ...)
