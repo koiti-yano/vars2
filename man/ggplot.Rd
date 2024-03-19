@@ -4,7 +4,7 @@
 \alias{ggplot}
 \title{ggplot: Plot impulse responses of VAR and SVAR with ggplot2}
 \usage{
-ggplot(irf)
+ggplot(irf, ...)
 }
 \arguments{
 \item{irf}{a list of impulse responses}
