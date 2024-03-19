@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot.R
 \name{ggplot}
 \alias{ggplot}
-\title{ggplot: Plot impulse responses of VAR and SVAR with ggplot2}
+\title{Plot method for impulse responses of VAR and SVAR with ggplot2}
 \usage{
 ggplot(irf, ...)
 }
@@ -10,7 +10,7 @@ ggplot(irf, ...)
 \item{irf}{a list of impulse responses}
 }
 \description{
-ggplot: Plot impulse responses of VAR and SVAR with ggplot2
+Plot method for impulse responses of VAR and SVAR with ggplot2
 }
 \examples{
 data(Canada)

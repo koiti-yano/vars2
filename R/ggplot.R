@@ -1,4 +1,4 @@
-#' ggplot: Plot impulse responses of VAR and SVAR with ggplot2
+#' Plot method for impulse responses of VAR and SVAR with ggplot2
 #'
 #' @param irf a list of impulse responses
 #' @examples
