@@ -1,6 +1,6 @@
 data(Canada_tbl)
 ## For VAR
-var_p2 <- VAR(Canada, p = 2, type = "const")
+var_p2 <- VAR(Canada_tbl, p = 2, type = "const")
 var_p2_irf <- irf(var_p2, impulse = "e",
                   response = c("e", "prod", "rw", "U"), boot = TRUE)
 plot(var_p2_irf)

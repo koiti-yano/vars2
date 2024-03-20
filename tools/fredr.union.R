@@ -11,10 +11,10 @@ fredr_set_key("d88c682c8274047b72e7e64da46a7801")
 freq_flag <- "q" # Quarterly
 #freq_flag <- "a" # Annual
 
-
 # In FRED, the start and the end of the observation period
 start1_date <- "2018-01-01"
 end1_date <- Sys.Date()
+
 
 # https://fred.stlouisfed.org/series/NAEXKP02JPQ189S
 jp_prv_c <- fredr_series_observations(
@@ -24,8 +24,6 @@ jp_prv_c <- fredr_series_observations(
   frequency = freq_flag,
   units = "log"
 )
-jp_prv_c %>% rename(value_jp_prv_c = value) -> jp_prv_c
-jp_prv_c %>% head()
 
 # https://fred.stlouisfed.org/series/NAEXKP03JPQ189S
 jp_gov_c <- fredr_series_observations(
@@ -35,6 +33,15 @@ jp_gov_c <- fredr_series_observations(
   frequency = freq_flag,
   units = "log"
 )
+
+# https://stackoverflow.com/questions/36520813/r-dplyr-rename-and-select-using-string-variable
+var_names <- c("priv_c", "gov_e")
+jp_prv_c %>% select(date, value) %>% setNames(var_names) 
+
+num=1
+jp_prv_c %>% rename(as.character(var_names[1]) = value)) -> jp_prv_c
+jp_prv_c %>% head()
+
 jp_gov_c %>% rename(value_jp_gov_c = value) -> jp_gov_c
 jp_gov_c %>% head()
 

@@ -10,6 +10,10 @@ ggplot(irf, ...)
 \item{irf}{impulse responses of VAR or SVAR}
 
 \item{\dots}{further arguments passed to or from other methods.}
+
+\item{sub}{subtitile of plot (main title is generated automatically)}
+
+\item{cap}{caption of plot}
 }
 \description{
 Plot method for impulse responses of VAR and SVAR with ggplot2

@@ -1,6 +1,8 @@
 #' Plot method for impulse responses of VAR and SVAR with ggplot2
 #'
 #' @param irf impulse responses of VAR or SVAR
+#' @param sub subtitile of plot (main title is generated automatically)
+#' @param cap caption of plot
 #' @param \dots further arguments passed to or from other methods.
 #' 
 #' @examples

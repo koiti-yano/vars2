@@ -1,7 +1,7 @@
 library(vars2)
 
 data("Canada_tbl")
-var_p2 <- VAR(Canada,2)
+var_p2 <- VAR(Canada_tbl,2)
 
 # boot=TRUE
 var_p2_irf_boot <- irf(var_p2)
@@ -24,4 +24,4 @@ ggplot(var_p2_irf_e_boot)
 var_p2_irf_e_boot <- irf(var_p2,impulse = "e",
                          response = c("e", "prod", "rw", "U"),
                          boot=FALSE)
-ggplot(var_p2_irf_e_boot)
+ggplot(var_p2_irf_e_boot, sub="Canada", cap=NULL)
