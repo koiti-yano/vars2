@@ -1,7 +1,6 @@
 # vars2
 **Vector Autoregression Models (a modified version of vars)**
 
-The package vars by Bernhard Pfaff is a perfect tool for time series analysis, and many reseaechers and practitioners on the area love it in the past 18 years. I also love it so much. 
+The package vars by Bernhard Pfaff is an excellent tool for time series analysis, and many researchers and practitioners in the field have loved it for the past 18 years. I also hold it in high regard.
 
-Recently, I found that many reseaechers and practitioners prefer tibble than ts and ggplot2 than base-plot. To solve the problem, I am planning to modify the vars for using tibble and ggplot2. Now I'm calling the modified version of vars vars2.
-
+Recently, I’ve noticed that many researchers and practitioners prefer tibble over ts and ggplot2 over base plot. To address this preference, I am planning to modify vars to utilize tibble and ggplot2. The modified version of vars is now being referred to as vars2.
