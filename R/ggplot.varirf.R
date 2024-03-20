@@ -54,7 +54,7 @@
 
   # ggplot2
   if(irf$model == "varest" & irf$ortho == TRUE){
-    main="orthogonalized Impulse Response"
+    main="orthogonal Impulse Response"
   } else if (irf$model == "svarest") {
     main="SVAR Impulse Response"
   } else {
@@ -63,7 +63,7 @@
   if(!is.null(irf$Upper)){
     plot <- ggplot2::ggplot(plot_data) +
       ggplot2::geom_line(ggplot2::aes(x = Time, y= value,
-                                      lty = type),show.legend = F) + 
+                                      lty = type), show.legend = F) + 
       ggplot2::labs(title = main, subtitle = sub, caption = cap) + 
       ggplot2::facet_grid(cols = ggplot2::vars(imp),
                           rows = ggplot2::vars(name)) +
@@ -75,7 +75,7 @@
   } else {
     plot <- ggplot2::ggplot(plot_data) +
       ggplot2::geom_line(ggplot2::aes(x = Time,y = value,
-                                      lty = type),show.legend = F) +
+                                      lty = type), show.legend = F) +
       ggplot2::labs(title = main, subtitle = sub, caption = cap) + 
       ggplot2::facet_grid(cols = ggplot2::vars(imp),
                           rows = ggplot2::vars(name)) +

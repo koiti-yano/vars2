@@ -1,3 +1,4 @@
+require(vars2)
 data(Canada_tbl)
 ## For VAR
 var_p2 <- VAR(Canada_tbl, p = 2, type = "const")

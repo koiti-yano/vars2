@@ -9,7 +9,8 @@ ggplot(irf, ...)
 \arguments{
 \item{irf}{impulse responses of VAR or SVAR}
 
-\item{\dots}{further arguments passed to or from other methods.}
+\item{\dots}{further arguments passed to or from other methods 
+(currently not used).}
 
 \item{sub}{subtitile of plot (main title is generated automatically)}
 
@@ -24,12 +25,12 @@ data(Canada)
 var.2c <- VAR(Canada, p = 2, type = "const")
 irf.2c <- irf(var.2c, impulse = "e", response = c("e", "prod", "rw", "U"), boot =
 TRUE)
-ggplot(irf.2c)
+ggplot(irf.2c, sub="Canada", cap="Caption")
 
 ## For SVAR
 amat <- diag(4)
 diag(amat) <- NA
 svar.a <- SVAR(var.2c, estmethod = "direct", Amat = amat)
 irf.sa <- irf(svar.a)
-ggplot(irf.sa)
+ggplot(irf.sa, sub="Canada", cap="Caption")
 }

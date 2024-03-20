@@ -1,5 +1,4 @@
-library(vars2)
-
+require(vars2)
 data("Canada_tbl")
 var_p2 <- VAR(Canada_tbl,2)
 

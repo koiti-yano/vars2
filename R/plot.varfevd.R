@@ -1,6 +1,5 @@
 #' @importFrom grDevices gray.colors
 #' @importFrom graphics barplot
-#' @importFrom stats plot.ts
 #' @export plot.varfevd
 "plot.varfevd" <-
 function (x, plot.type = c("multiple", "single"), names = NULL, main = NULL, col = NULL, ylim = NULL, ylab = NULL, xlab = NULL, legend = NULL, names.arg = NULL, nc, mar = par("mar"), oma = par("oma"), addbars = 1, ...)
@@ -31,11 +30,11 @@ function (x, plot.type = c("multiple", "single"), names = NULL, main = NULL, col
     if(addbars > 0){
       hmat <- matrix(0, nrow = K, ncol = addbars)
       xvalue <- cbind(t(x), hmat)
-      barplot(xvalue, main = main, col = col, ylab = ylab, xlab = xlab, names.arg = names.arg, ylim = ylim, legend.text = legend, ...)
+      graphics::barplot(xvalue, main = main, col = col, ylab = ylab, xlab = xlab, names.arg = names.arg, ylim = ylim, legend.text = legend, ...)
       abline(h = 0)
     } else {
       xvalue <- t(x)
-      barplot(xvalue, main = main, col = col, ylab = ylab, xlab = xlab, names.arg = names.arg, ylim = ylim, ...)
+      graphics::barplot(xvalue, main = main, col = col, ylab = ylab, xlab = xlab, names.arg = names.arg, ylim = ylim, ...)
       abline(h = 0)
     }
   }
