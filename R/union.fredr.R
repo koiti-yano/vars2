@@ -1,4 +1,5 @@
 #' union
+#' @import stats
 #' @import dplyr
 #' @export
 "union.fredr" <- function(data_list, var_names){
@@ -12,7 +13,7 @@
     col_names <- c("date", var_names[ii])
     # https://stackoverflow.com/questions/36520813/r-dplyr-rename-and-select-using-string-variable
     fredr_list[[ii]] |>  dplyr::select(date, value) |>
-      dplyr::setNames(col_names) -> tmp
+      stats::setNames(col_names) -> tmp
     tmp_list <- c(tmp_list, list(tmp))
   }
 #  print(tmp_list)

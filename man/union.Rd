@@ -19,10 +19,10 @@ Unite data from API (ex. FRED)
 }
 \examples{
 \dontrun{
-require("fredr")
+library(fredr)
 library(tidyverse)
-# FREDのAPIを利用するキーを指定します
-fredr_set_key("d88c682c8274047b72e7e64da46a7801")
+# Set your FRED API Key
+fredr_set_key("abcdefghijklmnopqrstuvwxyz")
 #freq_flag <- "m" # Monthly
 freq_flag <- "q" # Quarterly
 #freq_flag <- "a" # Annual
@@ -30,37 +30,39 @@ freq_flag <- "q" # Quarterly
 start1_date <- "2018-01-01"
 end1_date <- Sys.Date()
 
-# https://fred.stlouisfed.org/series/NAEXKP02JPQ189S
-jp_prv_c <- fredr_series_observations(
-series_id = "NAEXKP02JPQ189S",
+# Real Private Final Consumption Expenditure for United States
+# https://fred.stlouisfed.org/series/NAEXKP02USQ189S
+us_prv_c <- fredr_series_observations(
+series_id = "NAEXKP02USQ189S",
 observation_start = as.Date(start1_date),
 observation_end = as.Date(end1_date),
 frequency = freq_flag,
 units = "log"
 )
 
-# https://fred.stlouisfed.org/series/NAEXKP03JPQ189S
-jp_gov_e <- fredr_series_observations(
-series_id = "NAEXKP03JPQ189S",
+# Real Government Final Consumption Expenditure for United States
+# https://fred.stlouisfed.org/series/NAEXKP03USQ652S
+us_gov_e <- fredr_series_observations(
+series_id = "NAEXKP03USQ652S",
 observation_start = as.Date(start1_date),
 observation_end = as.Date(end1_date),
 frequency = freq_flag,
 units = "log"
 )
 
-# https://fred.stlouisfed.org/series/JPNGDPDEFQISMEI
-jp_def <- fredr_series_observations(
-series_id = "JPNGDPDEFQISMEI",
+# GDP Deflator for United States
+# https://fred.stlouisfed.org/series/USAGDPDEFQISMEI
+us_def <- fredr_series_observations(
+series_id = "USAGDPDEFQISMEI",
 observation_start = as.Date(start1_date),
 observation_end = as.Date(end1_date),
 frequency = freq_flag,
 units = "log"
 )
 
-# https://stackoverflow.com/questions/36520813/r-dplyr-rename-and-select-using-string-variable
-fredr_list <- list(jp_prv_c, jp_gov_e, jp_def)
-ar_names <- c("priv_c", "gov_e", "defl")
-union.fredr(fredr_list, var_names) -> jp_macro
-print(jp_macro)
+fredr_list <- list(us_prv_c, us_gov_e, us_def)
+var_names <- c("priv_c", "gov_e", "defl")
+us_macro <- union.fredr(fredr_list, var_names)  
+print(us_macro)
 }
 }
