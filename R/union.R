@@ -1,7 +1,7 @@
-#' Unite data from API (ex. FRED)
+#' Unite tibbles obtained from FRED API (fredr)
 #'
-#' @param data_list impulse responses of VAR or SVAR
-#' @param var_names subtitile of plot (main title is generated automatically)
+#' @param data_list a list of tibbles from fredr
+#' @param var_names name list of variables
 #' @param \dots further arguments passed to or from other methods 
 #' (currently not used).
 #' 
