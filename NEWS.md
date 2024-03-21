@@ -1,3 +1,3 @@
 # var2 0.1.0
 
-* Initial CRAN submission.
+* Version 0.1.0.
