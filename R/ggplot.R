@@ -1,7 +1,9 @@
 #' Plot method for impulse responses of VAR and SVAR with ggplot2
 #'
 #' @param irf impulse responses of VAR or SVAR
-#' @param sub subtitile of plot (main title is generated automatically)
+#' @param main main title of plot (The default is NULL, in which case the main
+#' title is generated automatically.)
+#' @param sub subtitile of plot 
 #' @param cap caption of plot
 #' @param \dots further arguments passed to or from other methods 
 #' (currently not used).
@@ -21,6 +23,6 @@
 #' irf.sa <- irf(svar.a)
 #' ggplot(irf.sa, sub="Canada", cap="Caption")
 #' @export
-"ggplot" <- function(irf, sub, cap, ...){
+"ggplot" <- function(irf, main, sub, cap, ...){
   UseMethod("ggplot", irf)
 }

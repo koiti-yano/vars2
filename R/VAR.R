@@ -65,6 +65,8 @@
 #' VAR(Canada, p = 2, type = "trend")
 #' VAR(Canada, p = 2, type = "both")
 #'
+#' @importFrom dplyr select_if
+#' @importFrom tibble is_tibble
 #' @export
 "VAR" <-
 function (y, p = 1, type = c("const", "trend", "both", "none"),

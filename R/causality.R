@@ -99,6 +99,7 @@
 #' #use a wild-bootstrap procedure to for the Granger test
 #' causality(var.2c, cause = "e", boot=TRUE, boot.runs=1000)}
 #' 
+#' @importFrom MASS ginv
 #' @export causality
 causality <-
 function(x, cause = NULL, vcov.=NULL, boot=FALSE, boot.runs=100){

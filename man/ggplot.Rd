@@ -4,12 +4,15 @@
 \alias{ggplot}
 \title{Plot method for impulse responses of VAR and SVAR with ggplot2}
 \usage{
-ggplot(irf, sub, cap, ...)
+ggplot(irf, main, sub, cap, ...)
 }
 \arguments{
 \item{irf}{impulse responses of VAR or SVAR}
 
-\item{sub}{subtitile of plot (main title is generated automatically)}
+\item{main}{main title of plot (The default is NULL, in which case the main
+title is generated automatically.)}
+
+\item{sub}{subtitile of plot}
 
 \item{cap}{caption of plot}
 
