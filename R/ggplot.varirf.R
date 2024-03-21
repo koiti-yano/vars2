@@ -11,7 +11,7 @@
 #' @author Victor Espinoza (stackoverflow), Koichi (Koiti) Yano
 #'
 #' @export
-"ggplot.varirf" <- function(irf, sub=NULL, cap=NULL){
+"ggplot.varirf" <- function(irf, sub=NULL, cap=NULL, ...){
 
   if (class(irf) %in% "varirf") {
   } else{

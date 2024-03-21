@@ -4,17 +4,17 @@
 \alias{ggplot}
 \title{Plot method for impulse responses of VAR and SVAR with ggplot2}
 \usage{
-ggplot(irf, ...)
+ggplot(irf, sub, cap, ...)
 }
 \arguments{
 \item{irf}{impulse responses of VAR or SVAR}
 
-\item{\dots}{further arguments passed to or from other methods 
-(currently not used).}
-
 \item{sub}{subtitile of plot (main title is generated automatically)}
 
 \item{cap}{caption of plot}
+
+\item{\dots}{further arguments passed to or from other methods 
+(currently not used).}
 }
 \description{
 Plot method for impulse responses of VAR and SVAR with ggplot2

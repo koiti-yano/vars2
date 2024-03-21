@@ -21,6 +21,6 @@
 #' irf.sa <- irf(svar.a)
 #' ggplot(irf.sa, sub="Canada", cap="Caption")
 #' @export
-"ggplot" <- function(irf, ...){
+"ggplot" <- function(irf, sub, cap, ...){
   UseMethod("ggplot", irf)
 }

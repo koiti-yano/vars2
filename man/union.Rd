@@ -4,7 +4,7 @@
 \alias{union}
 \title{Unite data from API (ex. FRED)}
 \usage{
-union(data_list, var_names, ...)
+union(data_list, var_names)
 }
 \arguments{
 \item{data_list}{impulse responses of VAR or SVAR}
@@ -22,7 +22,8 @@ Unite data from API (ex. FRED)
 library(fredr)
 library(tidyverse)
 # Set your FRED API Key
-fredr_set_key("abcdefghijklmnopqrstuvwxyz")
+fredr_set_key("d88c682c8274047b72e7e64da46a7801")
+#fredr_set_key("abcdefghijklmnopqrstuvwxyz")
 #freq_flag <- "m" # Monthly
 freq_flag <- "q" # Quarterly
 #freq_flag <- "a" # Annual

@@ -55,6 +55,6 @@
 #' print(us_macro)
 #' }
 #' @export
-"union" <- function(data_list, var_names, ...){
+"union" <- function(data_list, var_names){
   UseMethod("union", data_list, var_names)
 }
