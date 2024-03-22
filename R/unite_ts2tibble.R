@@ -1,6 +1,6 @@
 #' Unite multiple ts objects, and convert them to a tibble object 
 #' 
-#' @param ... 
+#' @param ... dot-dot-dot
 #' @importFrom stats ts.union
 #' @importFrom tidyr pivot_wider
 #' @importFrom tsbox ts_tbl
@@ -19,8 +19,8 @@
   tsbox::ts_tbl(ts_united_tmp) -> ts_united_tidy
   #canada_tidy %>% view()
   
-  ts_united_tidy |> tidyr::pivot_wider(names_from = id,
-                                     values_from=value) -> data_tbl
+  ts_united_tidy |> tidyr::pivot_wider(names_from = "id",
+                                     values_from="value") -> data_tbl
   return(data_tbl)
   
 }

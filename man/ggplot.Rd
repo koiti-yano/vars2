@@ -2,38 +2,16 @@
 % Please edit documentation in R/ggplot.R
 \name{ggplot}
 \alias{ggplot}
-\title{Plot method for impulse responses of VAR and SVAR with ggplot2}
+\title{Plot method with ggplot2}
 \usage{
-ggplot(irf, main, sub, cap, ...)
+ggplot(irf, ...)
 }
 \arguments{
 \item{irf}{impulse responses of VAR or SVAR}
-
-\item{main}{main title of plot (The default is NULL, in which case the main
-title is generated automatically.)}
-
-\item{sub}{subtitile of plot}
-
-\item{cap}{caption of plot}
 
 \item{\dots}{further arguments passed to or from other methods 
 (currently not used).}
 }
 \description{
-Plot method for impulse responses of VAR and SVAR with ggplot2
-}
-\examples{
-data(Canada)
-## For VAR
-var.2c <- VAR(Canada, p = 2, type = "const")
-irf.2c <- irf(var.2c, impulse = "e", response = c("e", "prod", "rw", "U"), boot =
-TRUE)
-ggplot(irf.2c, sub="Canada", cap="Caption")
-
-## For SVAR
-amat <- diag(4)
-diag(amat) <- NA
-svar.a <- SVAR(var.2c, estmethod = "direct", Amat = amat)
-irf.sa <- irf(svar.a)
-ggplot(irf.sa, sub="Canada", cap="Caption")
+Plot method with ggplot2
 }

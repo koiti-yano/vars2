@@ -2,8 +2,6 @@
 #'
 #' @param fredr_list a list of tibbles from fredr
 #' @param var_name name list of variables
-#' @param \dots further arguments passed to or from other methods 
-#' (currently not used).
 #' 
 #' @importFrom stats setNames
 #' @importFrom dplyr select left_join
@@ -67,7 +65,7 @@
 #    browser()
     col_names <- c("date", var_name[ii])
     # https://stackoverflow.com/questions/36520813/r-dplyr-rename-and-select-using-string-variable
-    fredr_list[[ii]] |>  dplyr::select(date, value) |>
+    fredr_list[[ii]] |>  dplyr::select("date", "value") |>
       stats::setNames(col_names) -> tmp
     tmp_list <- c(tmp_list, list(tmp))
   }

@@ -7,7 +7,7 @@
 unite_ts2tbl(...)
 }
 \arguments{
-\item{...}{}
+\item{...}{dot-dot-dot}
 }
 \description{
 Unite multiple ts objects, and convert them to a tibble object

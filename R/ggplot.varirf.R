@@ -1,3 +1,13 @@
+#' Plot impulse responses of VAR and SVAR
+#' 
+#' @param irf impulse responses of VAR or SVAR
+#' @param main main title of plot (The default is NULL, in which case the main
+#' title is generated automatically.)
+#' @param sub subtitile of plot 
+#' @param cap caption of plot
+#' @param \dots further arguments passed to or from other methods 
+#' (currently not used).
+#' 
 #' @import stats
 #' @importFrom ggplot2 ggplot labs facet_grid geom_hline 
 #' @importFrom ggplot2 scale_linetype_manual scale_x_continuous
@@ -10,6 +20,21 @@
 #' stackoverflow.
 #' @author Victor Espinoza (stackoverflow), Koichi (Koiti) Yano
 #'
+#' @examples
+#' data(Canada)
+#' ## For VAR
+#' var.2c <- VAR(Canada, p = 2, type = "const")
+#' irf.2c <- irf(var.2c, impulse = "e", response = c("e", "prod", "rw", "U"), boot =
+#' TRUE)
+#' ggplot(irf.2c, sub="Canada", cap="Caption")
+#'
+#' ## For SVAR
+#' amat <- diag(4)
+#' diag(amat) <- NA
+#' svar.a <- SVAR(var.2c, estmethod = "direct", Amat = amat)
+#' irf.sa <- irf(svar.a)
+#' ggplot(irf.sa, main="Canada", sub="Structural IRF", 
+#' cap="Caption: The original time series are published by the OECD.")
 #' @export
 "ggplot.varirf" <- function(irf, main=NULL, sub=NULL, cap=NULL, ...){
 
@@ -53,13 +78,16 @@
   }
 
   # ggplot2
-  if(irf$model == "varest" & irf$ortho == TRUE){
-    main="orthogonal Impulse Response"
-  } else if (irf$model == "svarest") {
-    main="SVAR Impulse Response"
+  if (!is.null(main)) {
+    # Do nothing
   } else {
-    main=NULL
+    if(irf$model == "varest" & irf$ortho == TRUE){
+      main="Orthogonal Impulse Response"
+    } else if (irf$model == "svarest") {
+      main="SVAR Impulse Response"
+    }
   }
+
   if(!is.null(irf$Upper)){
     plot <- ggplot2::ggplot(plot_data) +
       ggplot2::geom_line(ggplot2::aes(x = Time, y= value,
