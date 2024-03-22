@@ -27,4 +27,5 @@ Imports:
     methods,
     tibble,
     tidyr,
-    zoo
+    zoo,
+    tsbox
