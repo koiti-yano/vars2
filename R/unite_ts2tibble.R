@@ -24,10 +24,3 @@
   return(data_tbl)
   
 }
-
-
-ts1 <- ts(1:12, freq=4, start=c(2000,1))
-ts2 <- ts(12:1, freq=4, start=c(2000,1))
-ts3 <- ts(13:24, freq=4, start=c(2000,1))
-
-unite_ts2tbl(ts1, ts2, ts3)
