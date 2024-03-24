@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot.R
 \name{ggplot}
 \alias{ggplot}
-\title{Plot method with ggplot2}
+\title{Plot impulse responses with ggplot2}
 \usage{
 ggplot(irf, ...)
 }
@@ -13,5 +13,5 @@ ggplot(irf, ...)
 (currently not used).}
 }
 \description{
-Plot method with ggplot2
+Plot impulse responses with ggplot2
 }

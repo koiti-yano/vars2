@@ -1,4 +1,4 @@
-#' Unite multiple ts objects, and convert them to a tibble object 
+#' Unite ts objects, and convert them to a tibble object 
 #' 
 #' @param ... dot-dot-dot
 #' @importFrom stats ts.union

@@ -2,7 +2,7 @@
 % Please edit documentation in R/unite_ts2tibble.R
 \name{unite_ts2tbl}
 \alias{unite_ts2tbl}
-\title{Unite multiple ts objects, and convert them to a tibble object}
+\title{Unite ts objects, and convert them to a tibble object}
 \usage{
 unite_ts2tbl(...)
 }
@@ -10,7 +10,7 @@ unite_ts2tbl(...)
 \item{...}{dot-dot-dot}
 }
 \description{
-Unite multiple ts objects, and convert them to a tibble object
+Unite ts objects, and convert them to a tibble object
 }
 \examples{
 \dontrun{
