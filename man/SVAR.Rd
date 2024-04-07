@@ -2,6 +2,7 @@
 % Please edit documentation in R/SVAR.R
 \name{SVAR}
 \alias{SVAR}
+\alias{print.svarest}
 \title{Estimation of a SVAR}
 \usage{
 SVAR(

@@ -1,5 +1,3 @@
-#' Print methods for objects in SVAR 
-#' 
 #' @export
 "print.svarest" <-
 function(x, digits = max(3, getOption("digits") - 3), ...){
