@@ -10,3 +10,5 @@ The modified version of vars is now being tentatively referred to as vars2.
 ```
 devtools::install_github("koiti-yano/vars2")
 ```
+
+Koiti's note: After reaching out with the intention to fork ‘vars’, I received a generous and kind response from Dr. Bernhard Pfaff. I would like to express my gratitude for his significant contributions to the creation of many R packages, including ‘vars’, and I hereby record my appreciation for his great work.
