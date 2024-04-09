@@ -1,9 +1,11 @@
 # vars2
 **Vector Autoregression Models (a modified version of vars)**
 
-The package vars by Bernhard Pfaff is an influential tool for time series analysis, and many researchers and practitioners in the field have loved it for the past 18 years. I also hold it in high regard.
+The R package ‘vars’, created by Bernhard Pfaff, is an extremely powerful tool for time series analysis, and his contribution is truly worthy of praise in the fields of statistics and econometrics. Numerous researchers and practitioners in the fields, myself included, have greatly appreciated it and owe a considerable debt to his contributions over the years.
 
-Recently, I’ve noticed that many researchers and practitioners prefer tibble over ts and ggplot2 over base plot. To address this preference, I am planning to modify vars to utilize tibble and ggplot2. The modified version of vars is now being tentatively referred to as vars2.
+Recently, I have observed a growing preference among researchers and practitioners for ‘tibble’ over ‘ts’, and ‘ggplot2’ over the base plot. In response to this trend, I am planning to slightly modify vars to utilize tibble and ggplot2.  Needless to say, I respect the original intent and functionality of the ‘vars’.
+
+The modified version of vars is now being tentatively referred to as vars2.
 
 ```
 devtools::install_github("koiti-yano/vars2")
