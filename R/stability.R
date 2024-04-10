@@ -47,10 +47,9 @@
 #' var.2c <- VAR(Canada, p = 2, type = "const")
 #' var.2c.stabil <- stability(var.2c, type = "OLS-CUSUM")
 #' var.2c.stabil
-#' \dontrun{
 #' plot(var.2c.stabil)
-#' }
 #'
+#' @importFrom strucchange efp
 #' @export
 "stability" <-
 function(x, ...){
@@ -77,7 +76,7 @@ function(x, ...){
   for(i in 1 : K){
     formula <- formula(x$varresult[[i]])
     data <- x$varresult[[i]]$model
-    stability[[endog[i]]] <- efp(formula = formula, data = data, type = type, h = h, dynamic = dynamic, rescale = rescale)
+    stability[[endog[i]]] <- strucchange::efp(formula = formula, data = data, type = type, h = h, dynamic = dynamic, rescale = rescale)
   }
   result <- list(stability = stability, names = endog, K = K)
   class(result) <- "varstabil"
