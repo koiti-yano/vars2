@@ -11,6 +11,9 @@ The modified version of vars is now being tentatively referred to as vars2.
 devtools::install_github("koiti-yano/vars2")
 ```
 
+# New Features of vars2
++ Plot impulse response with ggplot2 (See the figure below)
++ Tibble
 ![Screenshot of ](tools/figure/plot_irf_with_vars2.png)
 
 Koiti's note (2024-04-09): After reaching out with the intention to fork ‘vars’, I received a generous and kind response from Dr. Bernhard Pfaff. I would like to express my gratitude for his significant contributions to the creation of many R packages, including ‘vars’, and I hereby record my appreciation for his great work.
