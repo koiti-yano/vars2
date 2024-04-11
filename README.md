@@ -13,7 +13,7 @@ devtools::install_github("koiti-yano/vars2")
 
 # New Features of vars2
 + Tibbles: The VAR function accepts a tibble as input y and some useful tools are added.)
-+ ggplot2: Impulse response plots with ggplot2 (the ggplot code of vars2 is originally written by Victor Espinoza)
++ ggplot2: Impulse response plots with ggplot2 (the ggplot code of vars2 is originally written by Victor Espinoza. See DESCRIPTION)
 ![Screenshot of ](tools/figure/plot_irf_with_vars2.png)
 
 # Koiti' note
