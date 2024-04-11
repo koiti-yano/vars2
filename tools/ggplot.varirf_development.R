@@ -2,7 +2,7 @@
 # References:
 # "Plot() impulse response function - show more than one in one window?"
 # https://stackoverflow.com/questions/68010256/plot-impulse-response-function-show-more-than-one-in-one-window
-# Copyright (c) 2022, Victor Espinoza
+# Copyright (c) 2022, Victor Espinoza (stackoverflow)
 # Thank you for sharing this code!
 # Slightly modified by Koichi (Koiti) Yano
 

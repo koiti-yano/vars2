@@ -15,10 +15,10 @@
 #' @importFrom tibble is_tibble add_column
 #' @importFrom tidyr unnest pivot_longer
 #'
-#' @references Victor Espinoza, (2022),
+#' @references Victor Espinoza, (2022), 
 #' "Plot() impulse response function - show more than one in one window?,"
 #' stackoverflow.
-#' @author Victor Espinoza (stackoverflow), Koichi (Koiti) Yano
+#' @author Victor Espinoza (on stackoverflow), Koichi (Koiti) Yano
 #'
 #' @examples
 #' data(Canada)
