@@ -17,4 +17,4 @@ devtools::install_github("koiti-yano/vars2")
 ![Screenshot of ](tools/figure/plot_irf_with_vars2.png)
 
 # Koiti' note
-Koiti's note (2024-04-09): After reaching out with the intention to fork ‘vars’, I received a generous and kind response from Dr. Bernhard Pfaff. I would like to express my gratitude for his significant contributions to the creation of many R packages, including ‘vars’, and I hereby record my appreciation for his great work.
+2024-04-09: After reaching out with the intention to fork ‘vars’, I received a generous and kind response from Dr. Bernhard Pfaff. I would like to express my gratitude for his significant contributions to the creation of many R packages, including ‘vars’, and I hereby record my appreciation for his great work.
