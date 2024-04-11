@@ -12,7 +12,7 @@ devtools::install_github("koiti-yano/vars2")
 ```
 
 # New Features of vars2
-+ Tibbles
++ Tibbles (The VAR function can take a tibble as an argument.)
 + Plot impulse response with ggplot2 (See the figure below)
 ![Screenshot of ](tools/figure/plot_irf_with_vars2.png)
 
