@@ -39,10 +39,10 @@ ggplot(irf.sa, main="Canada", sub="Structural IRF",
 cap="Caption: The original time series are published by the OECD.")
 }
 \references{
-Victor Espinoza, (2022),
+Victor Espinoza, (2022), 
 "Plot() impulse response function - show more than one in one window?,"
 stackoverflow.
 }
 \author{
-Victor Espinoza (stackoverflow), Koichi (Koiti) Yano
+Victor Espinoza (on stackoverflow), Koichi (Koiti) Yano
 }

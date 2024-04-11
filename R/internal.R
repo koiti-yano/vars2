@@ -372,7 +372,9 @@ function(x, n.ahead, runs, ortho, cumulative, impulse, response, ci, seed, y.nam
 ##
 ## Bootstrapping IRF for SVEC
 ##
-.bootirfsvec <- function(x = x, n.ahead = n.ahead, runs = runs, ortho = ortho, cumulative = cumulative, impulse = impulse, response = response, ci = ci, seed = seed, y.names = y.names){
+.bootirfsvec <- function(x = x, n.ahead = n.ahead, runs = runs, ortho = ortho, 
+                         cumulative = cumulative, impulse = impulse, 
+                         response = response, ci = ci, seed = seed, y.names = y.names){
   ##
   ## Obtaining VECM arguments
   ##
