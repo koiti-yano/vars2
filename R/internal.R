@@ -1,8 +1,10 @@
 #'
+#' @importFrom stats lm
+#' @importFrom stats embed
+#' @importFrom urca ca.jo
 #' @import MASS
 #' @import strucchange
 #' @import zoo
-#' @importFrom urca ca.jo
 
 #require(MASS)
 #require(strucchange)
