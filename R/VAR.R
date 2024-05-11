@@ -75,7 +75,7 @@ function (y, p = 1, type = c("const", "trend", "both", "none"),
 {
 # Original code
 #  y <- as.matrix(y)
-# Modification for tibble/tsibble
+# Modification for tibble
   if (is.ts(y)) {
 #    print("ts data")
     as.matrix(y) -> y
@@ -86,7 +86,7 @@ function (y, p = 1, type = c("const", "trend", "both", "none"),
 #    browser()
 #    print(y)
   } else {
-    as.matrix(y) -> y
+    warning("\n Only 'ts' and 'df' are supported as inputs. \n")
   }
 
   if (any(is.na(y)))
