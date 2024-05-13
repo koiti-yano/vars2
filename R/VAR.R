@@ -86,7 +86,7 @@ function (y, p = 1, type = c("const", "trend", "both", "none"),
 #    browser()
 #    print(y)
   } else {
-    warning("\n Only 'ts' and 'df' are supported as inputs. \n")
+    warning("\n Input must be a ts object or a tibble object \n") 
   }
 
   if (any(is.na(y)))
