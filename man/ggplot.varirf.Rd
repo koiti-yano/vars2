@@ -41,7 +41,7 @@ cap="Caption: The original time series are published by the OECD.")
 \references{
 Victor Espinoza, (2022), 
 "Plot() impulse response function - show more than one in one window?,"
-stackoverflow.
+stackoverflow. \url{https://stackoverflow.com/questions/68010256/plot-impulse-response-function-show-more-than-one-in-one-window}
 }
 \author{
 Victor Espinoza (on stackoverflow), Koichi (Koiti) Yano
