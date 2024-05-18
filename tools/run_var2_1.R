@@ -6,10 +6,6 @@ var_p2 <- VAR(Canada_tbl,2)
 var_p2_irf_boot <- irf(var_p2)
 ggplot(var_p2_irf_boot)
 
-# boot=TRUE
-var_p2_irf_boot <- irf(var_p2)
-ggplot(var_p2_irf_boot)
-
 # boot=FALSE
 var_p2_irf <- irf(var_p2, boot=F)
 ggplot(var_p2_irf)
