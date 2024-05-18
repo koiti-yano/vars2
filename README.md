@@ -1,5 +1,7 @@
 # vars2 
-**Vector autoregression (a slightly modified version of vars)** <img align="right" src="/tools/hex_vars2.png" width="120">
+
+
+## Vector autoregression (a slightly modified version of vars) <img align="right" src="/tools/hex_vars2.png" width="120">
 
 The R package ‘vars’, created by Bernhard Pfaff, is an extremely powerful tool for time series analysis, and his contribution is truly worthy of praise in the fields of statistics and econometrics. Numerous researchers and practitioners in the fields, myself included, have greatly appreciated it and owe a considerable debt to his contributions over the years.
 
@@ -11,11 +13,11 @@ The modified version of vars is now being tentatively referred to as vars2. This
 devtools::install_github("koiti-yano/vars2")
 ```
 
-# New Features of vars2
+## New Features of vars2
 + Tibbles: The VAR function accepts a tibble as input y and some useful tools are added
 + ggplot2: Impulse response plots with ggplot2 (the ggplot code of vars2 is originally written by Victor Espinoza. See DESCRIPTION)
 
 <img src="tools/figure/plot_irf_with_vars2.png" width="500">
 
-# Koiti' note
+## Koiti' note
 2024-04-09: After reaching out with the intention to fork ‘vars’, I received a generous and kind response from Dr. Bernhard Pfaff. I would like to express my gratitude for his significant contributions to the creation of many R packages, including ‘vars’, and I hereby record my appreciation for his great work.
