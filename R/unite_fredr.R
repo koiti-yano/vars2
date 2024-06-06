@@ -12,7 +12,7 @@
 #' library(fredr)
 #' library(tidyverse)
 #' # Set your FRED API Key
-#' #fredr_set_key("abcdefghijklmnopqrstuvwxyz")
+#' fredr_set_key("abcdefghijklmnopqrstuvwxyz")
 #' #freq_flag <- "m" # Monthly
 #' freq_flag <- "q" # Quarterly
 #' #freq_flag <- "a" # Annual
