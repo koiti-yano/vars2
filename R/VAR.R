@@ -76,17 +76,18 @@ function (y, p = 1, type = c("const", "trend", "both", "none"),
 # Original code
 #  y <- as.matrix(y)
 # Modification for tibble
+#  browser()
   if (is.ts(y)) {
-#    print("ts data")
+    print("ts data")
     as.matrix(y) -> y
-  } else if (tibble::is_tibble(y)){
-#    print("tibble")
+  } else if (is.data.frame(y) || tibble::is_tibble(y)){
+    # https://www.geeksforgeeks.org/select-only-numeric-columns-from-dataframe-in-r/
+    print("df or tibble")
     dplyr::select_if(y, is.numeric) -> y_tmp
     as.matrix(y_tmp) -> y
 #    browser()
-#    print(y)
   } else {
-    warning("\n Input must be a ts object or a tibble object \n") 
+# Do nothing
   }
 
   if (any(is.na(y)))
