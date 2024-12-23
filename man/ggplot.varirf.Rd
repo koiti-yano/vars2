@@ -4,7 +4,7 @@
 \alias{ggplot.varirf}
 \title{Plot impulse responses of VAR and SVAR}
 \usage{
-\method{ggplot}{varirf}(irf, main = NULL, sub = NULL, cap = NULL, ...)
+\method{ggplot}{varirf}(irf, main = NULL, sub = NULL, cap = NULL, var_name = NULL, ...)
 }
 \arguments{
 \item{irf}{impulse responses of VAR or SVAR}

@@ -36,7 +36,8 @@
 #' ggplot(irf.sa, main="Canada", sub="Structural IRF", 
 #' cap="Caption: The original time series are published by the OECD.")
 #' @export
-"ggplot.varirf" <- function(irf, main=NULL, sub=NULL, cap=NULL, ...){
+"ggplot.varirf" <- function(irf, main=NULL, sub=NULL, cap=NULL,
+                            var_name=NULL, ...){
 
   if (class(irf) %in% "varirf") {
   } else{
@@ -48,14 +49,27 @@
   imp <- Time <- type <- name <- value <- NULL
   fortify <- function(data){
     result <- vector(mode = "list",length = 0L)
-    for (d in 1:length(data)) {
-      result[[length(result)+1]]<- tibble::tibble(imp = names(data)[d],
-                                                  Time = 0:{nrow(data[[d]])-1},
-                                                  tibble::as_tibble(data[[d]]))
+    if (!is.null(var_name) ){
+      # 
+      for (d in 1:length(data)) {
+#        browser()
+        colnames(data[[d]]) <- var_name
+        result[[length(result)+1]] <- tibble::tibble(imp = var_name[d],
+                                                     Time = 0:{nrow(data[[d]])-1},
+                                                     tibble::as_tibble(data[[d]]))
+      }
+    } else {
+      # use column names if var_name is NULL
+      for (d in 1:length(data)) {
+        result[[length(result)+1]] <- tibble::tibble(imp = names(data)[d],
+                                                     Time = 0:{nrow(data[[d]])-1},
+                                                     tibble::as_tibble(data[[d]]))
+    }
   }
   data <- tidyr::unnest(tibble::tibble(result),cols = result)
   return(data)}
-
+  
+  
   data_irf <- fortify(irf$irf)
 
   # Prepare plot_data
@@ -74,7 +88,7 @@
       plot_data <- tibble::add_column(data_irf,type = "mean") |>
         tidyr::pivot_longer(cols = -c(imp,Time,type)) |>
         dplyr::mutate(imp = paste(imp,"(impls.)"),
-                      name = paste(name,"(resp.)")))
+                      name = paste(name,"(resp.)"))) # Original code
   }
 
   # ggplot2
