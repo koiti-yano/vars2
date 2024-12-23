@@ -16,6 +16,8 @@ title is generated automatically.)}
 
 \item{cap}{caption of plot}
 
+\item{var_name}{variable names: var_name=c("Emp", "Prod", "RW", "Unemp")}
+
 \item{\dots}{further arguments passed to or from other methods 
 (currently not used).}
 }
