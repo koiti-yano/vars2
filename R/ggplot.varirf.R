@@ -5,6 +5,7 @@
 #' title is generated automatically.)
 #' @param sub subtitile of plot 
 #' @param cap caption of plot
+#' @param var_name variable names: var_name=c("Emp", "Prod", "RW", "Unemp")
 #' @param \dots further arguments passed to or from other methods 
 #' (currently not used).
 #' 
@@ -49,7 +50,8 @@
   imp <- Time <- type <- name <- value <- NULL
   fortify <- function(data){
     result <- vector(mode = "list",length = 0L)
-    if (!is.null(var_name) ){
+    # var_nameの要素数が内生変数の数と異なる場合を考慮していない。要改善
+    if (!is.null(var_name) ){ 
       # 
       for (d in 1:length(data)) {
 #        browser()
