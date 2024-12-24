@@ -5,9 +5,11 @@
 #' title is generated automatically.)
 #' @param sub subtitile of plot 
 #' @param cap caption of plot
-#' @param var_name variable names: var_name=c("Emp", "Prod", "RW", "Unemp")
+#' @param var_name variable names: ex. var_name=c("Emp", "Prod", "RW", "Unemp")
+#' @param dev_new logical. If TRUE, open a new graphics device.
 #' @param \dots further arguments passed to or from other methods 
 #' (currently not used).
+#' @return A ggplot object
 #' 
 #' @import stats
 #' @importFrom ggplot2 ggplot labs facet_grid geom_hline 
@@ -19,15 +21,17 @@
 #' @references Victor Espinoza, (2022), 
 #' "Plot() impulse response function - show more than one in one window?,"
 #' stackoverflow. \url{https://stackoverflow.com/questions/68010256/plot-impulse-response-function-show-more-than-one-in-one-window}
-#' @author Victor Espinoza (on stackoverflow), Koichi (Koiti) Yano
+#' @author Victor Espinoza (stackoverflow), Koichi (Koiti) Yano
 #'
 #' @examples
+#'\donttest{
 #' data(Canada)
 #' ## For VAR
 #' var.2c <- VAR(Canada, p = 2, type = "const")
 #' irf.2c <- irf(var.2c, impulse = "e", response = c("e", "prod", "rw", "U"), boot =
 #' TRUE)
-#' ggplot(irf.2c, sub="Canada", cap="Caption")
+#' ggplot(irf.2c, sub="Canada", cap="Caption",
+#' var_name=c("Emp", "Prod", "Real Wage", "Unemp"))
 #'
 #' ## For SVAR
 #' amat <- diag(4)
@@ -35,16 +39,22 @@
 #' svar.a <- SVAR(var.2c, estmethod = "direct", Amat = amat)
 #' irf.sa <- irf(svar.a)
 #' ggplot(irf.sa, main="Canada", sub="Structural IRF", 
-#' cap="Caption: The original time series are published by the OECD.")
+#' cap="Caption: The original time series are published by the OECD.",
+#' var_name=c("Emp", "Prod", "Real Wage", "Unemp"))
+#' }
 #' @export
 "ggplot.varirf" <- function(irf, main=NULL, sub=NULL, cap=NULL,
-                            var_name=NULL, ...){
-
+                            var_name=NULL, dev_new=FALSE, ...){
+  
+  # Check class
   if (class(irf) %in% "varirf") {
   } else{
     stop("Only 'varirf' class object from vars::irf()")
   }
 
+  # dev.new() if dev_new is TRUE.
+  if (isTRUE(dev_new)){ dev.new() } else { } 
+  
   # No visible binding for global variable
   # https://www.r-bloggers.com/2019/08/no-visible-binding-for-global-variable/
   imp <- Time <- type <- name <- value <- NULL

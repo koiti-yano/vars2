@@ -19,4 +19,5 @@ ggplot(svar_p2_a1_irf, var_name=c("Emp", "Prod", "Real Wage", "Unemp"))
 # 
 svar_p2_a2_irf <- irf(svar_p2_a, boot = TRUE)
 #plot(svar_p2_a2_irf)
-ggplot(svar_p2_a2_irf, var_name=c("Emp", "Prod", "Real Wage", "Unemp"))
+ggplot(svar_p2_a2_irf, var_name=c("Emp", "Prod", "Real Wage", "Unemp"), 
+       dev_new=TRUE)
