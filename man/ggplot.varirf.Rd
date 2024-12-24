@@ -54,7 +54,7 @@ svar.a <- SVAR(var.2c, estmethod = "direct", Amat = amat)
 irf.sa <- irf(svar.a)
 ggplot(irf.sa, main="Canada", sub="Structural IRF", 
 cap="Caption: The original time series are published by the OECD.",
-var_name=c("Emp", "Prod", "Real Wage", "Unemp"))
+var_name=c("Emp", "Prod", "Real Wage", "Unemp"), dev_new=TRUE)
 }
 }
 \references{

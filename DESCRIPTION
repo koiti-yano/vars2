@@ -2,7 +2,7 @@ Package: vars2
 Type: Package
 Title: Vector Autoregression (A slightly modified version of vars)
 Version: 0.1.0
-Author: Bernhard Pfaff [aut, cre], Matthieu Stigler [ctb], Victor Espinoza [ctb]
+Author: Bernhard Pfaff [aut], Matthieu Stigler [ctb], Victor Espinoza [ctb], Koichi (Koiti) Yano [cre]
 Maintainer: Koichi (Koiti) Yano <koiti.yano@ymail.ne.jp>
 Description: Vector Autoregression Models (estimation of VAR, SVAR and SVEC models, lag selection, diagnostic testing, forecasting, causality analysis, forecast error variance decomposition and impulse response functions)
 License: GPL (>= 2)
