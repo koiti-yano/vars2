@@ -27,7 +27,7 @@
 #'\donttest{
 #' }
 #' @export
-"ggplot.varirf" <- function(lplin_irf, main=NULL, sub=NULL, cap=NULL,
+"ggplot.lpirfs_lin_obj" <- function(lplin_irf, main=NULL, sub=NULL, cap=NULL,
                             var_name=NULL, dev_new=FALSE, ...){
   
   # Check class
