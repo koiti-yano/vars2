@@ -1,6 +1,6 @@
 #' Plot impulse responses of lp_lin in lpirfs 
 #'  
-#' @param lplin_irf impulse responses of lp_lin in lpirfs 
+#' @param irf impulse responses of lp_lin in lpirfs 
 #' @param main main title of plot (The default is NULL, in which case the main
 #' title is generated automatically.)
 #' @param sub subtitile of plot 
@@ -27,11 +27,11 @@
 #'\donttest{
 #' }
 #' @export
-"ggplot.lpirfs_lin_obj" <- function(lplin_irf, main=NULL, sub=NULL, cap=NULL,
+ggplot.lpirfs_lin_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
                             var_name=NULL, dev_new=FALSE, ...){
   
   # Check class
-  if (class(lplin_irf) %in% "lpirfs_lin_obj") {
+  if (class(irf) %in% "lpirfs_lin_obj") {
   } else{
     stop("Only 'lpirfs_lin_obj' class object from lpirfs::lp_lin()")
   }
@@ -39,18 +39,34 @@
   # dev.new() if dev_new is TRUE.
   if (isTRUE(dev_new)){ dev.new() } else { } 
   
+  #======================================
   # Convert lp_lin_irf object to varirf object
   # https://stackoverflow.com/questions/20198751/three-dimensional-array-to-list
-  lplin_irf$specs$column_names -> var_name
-  dimnames(lplin_irf$irf_lin_mean)[[1]] <- var_name
-  dimnames(lplin_irf$irf_lin_mean)[[3]] <- var_name
+  #======================================
+  irf$specs$column_names -> var_name
   # Mean of IRF
-  lplin_irf$irf_lin_mean -> irf_tmp
-  irf<- lapply(seq(dim(irf_tmp)[3]), function(x) t(irf_tmp[ , , x]))
-  names(irf) <- var_name
-  
+  dimnames(irf$irf_lin_mean)[[1]] <- var_name
+  dimnames(irf$irf_lin_mean)[[3]] <- var_name
+  irf$irf_lin_mean -> irf_tmp
+  irf_mean<- lapply(seq(dim(irf_tmp)[3]), 
+                    function(x) t(irf_tmp[ , , x]))
+  names(irf_mean) <- var_name
+  # Lower bound of IRF
+  dimnames(irf$irf_lin_low)[[1]] <- var_name
+  dimnames(irf$irf_lin_low)[[3]] <- var_name
+  irf$irf_lin_low -> irf_lower_tmp
+  irf_lower <- lapply(seq(dim(irf_lower_tmp)[3]), 
+                      function(x) t(irf_lower_tmp[ , , x]))
+  # Upper bound of IRF 
+  dimnames(irf$irf_lin_up)[[1]] <- var_name
+  dimnames(irf$irf_lin_up)[[3]] <- var_name
+  irf$irf_lin_up -> irf_upper_tmp
+  irf_upper <- lapply(seq(dim(irf_upper_tmp)[3]), 
+                      function(x) t(irf_upper_tmp[ , , x]))
   # Make irf of varirf object
-  irf <- list(irf)
+  irf <- NULL
+  irf <- list(irf=irf_mean, Upper=irf_upper, Lower=irf_lower,
+              model="varest", ortho=TRUE)
   
   # No visible binding for global variable
   # https://www.r-bloggers.com/2019/08/no-visible-binding-for-global-variable/
@@ -76,7 +92,6 @@
     data <- tidyr::unnest(tibble::tibble(result),cols = result)
     return(data)
   }
-  
   
   data_irf <- fortify(irf$irf)
 
