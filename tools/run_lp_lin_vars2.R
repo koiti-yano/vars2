@@ -13,20 +13,15 @@ lp_irf <- lp_lin(endog_data,
                  shock_type     = 1,
                  confint        = 1.96,
                  hor            = 12)
-
-# Show all impule responses
 # Compare with Figure 5 in Jordà (2005)
-dev.new()
-ggplot(lp_irf)
+dev.new(); ggplot(lp_irf)
 
 # vars or vars2
 vars_res <- VAR(endog_data, p=2)
 
 var_irf <- irf(vars_res)
 
-dev.new()
-ggplot(var_irf)  
-
+dev.new(); ggplot(var_irf)  
 
 if(0){
   par(mfrow=c(3,1))
