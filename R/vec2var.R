@@ -39,6 +39,15 @@
 #' Analysis}, Springer, New York.
 #' @keywords regression
 #' @examples
+#' \dontrun{
+#' # devtools::check() make errors. The following example is not run.
+#' library(urca)
+#' data(finland)
+#' sjf <- finland
+#' sjf.vecm <- ca.jo(sjf, ecdet = "none", type = "eigen", K = 2,
+#' spec = "longrun", season = 4)
+#' vec2var(sjf.vecm, r = 2)
+#' }
 #' @export vec2var
 "vec2var" <-
 function(z, r = 1){

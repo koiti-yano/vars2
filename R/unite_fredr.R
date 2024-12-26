@@ -9,10 +9,12 @@
 #' 
 #' @examples
 #' \dontrun{
+#' # devtools::check() make errors because fredr_set_key is required.
+#' # The following example is not run.
 #' library(fredr)
 #' library(tidyverse)
 #' # Set your FRED API Key
-#' fredr_set_key("abcdefghijklmnopqrstuvwxyz")
+#' fredr_set_key("abcdefghijklmnopqrstuvwxyz") # Set your FRED API Key
 #' #freq_flag <- "m" # Monthly
 #' freq_flag <- "q" # Quarterly
 #' #freq_flag <- "a" # Annual

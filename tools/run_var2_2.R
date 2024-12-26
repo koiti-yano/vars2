@@ -1,3 +1,5 @@
+# run ggplot()
+rm(list=ls())
 require(vars2)
 data(Canada_tbl)
 ## For VAR
