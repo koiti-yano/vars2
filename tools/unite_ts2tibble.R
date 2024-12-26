@@ -5,7 +5,8 @@
 #' @importFrom tidyr pivot_wider
 #' @importFrom tsbox ts_tbl
 #' @export
-#' @examples \dontrun{
+#' @examples 
+#' \dontrun{
 #' ts1 <- ts(1:12, freq=4, start=c(2020,1))
 #' ts2 <- ts(12:1, freq=4, start=c(2020,1))
 #' ts3 <- ts(13:24, freq=4, start=c(2020,1))

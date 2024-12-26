@@ -15,7 +15,7 @@ ggplot(lp_irf)
 # vars or vars2
 vars_res <- VAR(endog_data, p=2)
 var_irf <- irf(vars_res)
-dev.new(); plot(var_irf)  
+ggplot(var_irf)  
 
 if(0){
   par(mfrow=c(3,1))

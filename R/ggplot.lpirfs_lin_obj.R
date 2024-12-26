@@ -24,7 +24,7 @@
 #' @author Victor Espinoza (stackoverflow), Koichi (Koiti) Yano
 #'
 #' @examples
-#'\donttest{
+#'\dontrun{
 #' require(lpirfs)
 #' require(vars2)
 #' # Load (endogenous) data
@@ -34,6 +34,9 @@
 #'                  shock_type = 1, confint  = 1.96, hor = 12)
 #' # Compare with Figure 5 in Jordà (2005)
 #' ggplot(lp_irf)
+#' vars_res <- VAR(endog_data, p=2)
+#' vars_irf <- irf(vars_res)
+#' ggplot(vars_irf)  
 #' }
 #' @export
 ggplot.lpirfs_lin_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,

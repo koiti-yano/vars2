@@ -97,11 +97,11 @@
 #' Analysis}, Springer, New York.
 #' @keywords regression
 #' @examples
-#' 
+#' \donttest{
 #' library(urca)
 #' data(Canada)
 #' vecm <- ca.jo(Canada[, c("prod", "e", "U", "rw")], type = "trace",
-#'               ecdet = "trend", K = 3, spec = "transitory")
+#' ecdet = "trend", K = 3, spec = "transitory")
 #' SR <- matrix(NA, nrow = 4, ncol = 4)
 #' SR[4, 2] <- 0
 #' SR
@@ -111,6 +111,7 @@
 #' LR
 #' SVEC(vecm, LR = LR, SR = SR, r = 1, lrtest = FALSE, boot = FALSE)
 #' 
+#' }
 #' @importFrom urca ca.jo cajorls
 #'
 #' @export 

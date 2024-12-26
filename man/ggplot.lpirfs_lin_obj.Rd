@@ -38,7 +38,7 @@ A ggplot object
 Plot impulse responses of lp_lin in lpirfs
 }
 \examples{
-\donttest{
+\dontrun{
 require(lpirfs)
 require(vars2)
 # Load (endogenous) data
@@ -48,6 +48,9 @@ lp_irf <- lp_lin(endog_data, lags_endog_lin = 4, trend = 0,
                  shock_type = 1, confint  = 1.96, hor = 12)
 # Compare with Figure 5 in Jordà (2005)
 ggplot(lp_irf)
+vars_res <- VAR(endog_data, p=2)
+vars_irf <- irf(vars_res)
+ggplot(vars_irf)  
 }
 }
 \references{

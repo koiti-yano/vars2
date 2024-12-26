@@ -22,7 +22,9 @@
 #' in \code{ic}, the default is Akaike.
 #'
 #' @aliases VAR print.varest
-#' @param y Data item containing the endogenous variables (ts or tibble)
+#' @param y Data item containing the endogenous variables (ts, df, and tibble).
+#' Note that the function will only use the numeric columns of a df or a tbl by
+#' "select_if(y, is.numeric)".
 #' @param p Integer for the lag order (default is p=1).
 #' @param type Type of deterministic regressors to include.
 #' @param season Inlusion of centered seasonal dummy variables (integer value
@@ -59,12 +61,20 @@
 #' @keywords regression
 #' @examples
 #'
+#'\donttest{
 #' data(Canada)
 #' VAR(Canada, p = 2, type = "none")
 #' VAR(Canada, p = 2, type = "const")
 #' VAR(Canada, p = 2, type = "trend")
 #' VAR(Canada, p = 2, type = "both")
-#'
+#' 
+#' data(Canada_tbl)
+#' VAR(Canada_tbl, p = 2, type = "none")
+#' VAR(Canada_tbl, p = 2, type = "const")
+#' VAR(Canada_tbl, p = 2, type = "trend")
+#' VAR(Canada_tbl, p = 2, type = "both")
+#' }
+#' 
 #' @importFrom dplyr select_if
 #' @importFrom tibble is_tibble
 #' @export
@@ -75,19 +85,17 @@ function (y, p = 1, type = c("const", "trend", "both", "none"),
 {
 # Original code
 #  y <- as.matrix(y)
-# Modification for tibble
-#  browser()
+# Modification for tibble and df
   if (is.ts(y)) {
-    print("ts data")
+    #print("ts data")
     as.matrix(y) -> y
   } else if (is.data.frame(y) || tibble::is_tibble(y)){
     # https://www.geeksforgeeks.org/select-only-numeric-columns-from-dataframe-in-r/
-    print("df or tibble")
+    #print("df or tibble")
     dplyr::select_if(y, is.numeric) -> y_tmp
     as.matrix(y_tmp) -> y
-#    browser()
   } else {
-# Do nothing
+    # Do nothing
   }
 
   if (any(is.na(y)))

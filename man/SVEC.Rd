@@ -115,11 +115,11 @@ the reduced form residuals. The test statistic is distributed as
 restrictions.
 }
 \examples{
-
+\donttest{
 library(urca)
 data(Canada)
 vecm <- ca.jo(Canada[, c("prod", "e", "U", "rw")], type = "trace",
-              ecdet = "trend", K = 3, spec = "transitory")
+ecdet = "trend", K = 3, spec = "transitory")
 SR <- matrix(NA, nrow = 4, ncol = 4)
 SR[4, 2] <- 0
 SR
@@ -129,6 +129,7 @@ LR[2:4, 4] <- 0
 LR
 SVEC(vecm, LR = LR, SR = SR, r = 1, lrtest = FALSE, boot = FALSE)
 
+}
 }
 \references{
 Amisano, G. and C. Giannini (1997), \emph{Topics in Structural

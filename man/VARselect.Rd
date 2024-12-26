@@ -13,7 +13,9 @@ VARselect(
 )
 }
 \arguments{
-\item{y}{Data item containing the endogenous variables}
+\item{y}{Data item containing the endogenous variables (ts, df, and tibble).
+Note that the function will only use the numeric columns of a df or a tbl by
+"select_if(y, is.numeric)".}
 
 \item{lag.max}{Integer for the highest lag order (default is \code{lag.max =
 10}).}
@@ -66,8 +68,13 @@ number of the parameters in each equation and \eqn{n} assigns the lag order.
 }
 \examples{
 
+\donttest{
 data(Canada)
 VARselect(Canada, lag.max = 5, type="const")
+
+data(Canada_tbl)
+VARselect(Canada_tbl, lag.max = 5, type="const")
+}
 
 }
 \references{

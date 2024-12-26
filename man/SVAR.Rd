@@ -127,7 +127,7 @@ the reduced form residuals. The test statistic is distributed as
 the number of restrictions.
 }
 \examples{
-
+\donttest{
 data(Canada)
 var.2c <- VAR(Canada, p = 2, type = "const")
 amat <- diag(4)
@@ -140,6 +140,7 @@ max.iter = 100, maxls = 1000, conv.crit = 1.0e-8)
 ## Estimation method direct
 SVAR(x = var.2c, estmethod = "direct", Amat = amat, Bmat = NULL,
 hessian = TRUE, method="BFGS")
+}
 
 }
 \references{

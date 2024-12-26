@@ -112,8 +112,9 @@
 #' Analysis}, Springer, New York.
 #' @keywords regression
 #' @importFrom utils head tail
+#' 
 #' @examples
-#'
+#' \donttest{
 #' data(Canada)
 #' var.2c <- VAR(Canada, p = 2, type = "const")
 #' amat <- diag(4)
@@ -126,7 +127,8 @@
 #' ## Estimation method direct
 #' SVAR(x = var.2c, estmethod = "direct", Amat = amat, Bmat = NULL,
 #' hessian = TRUE, method="BFGS")
-#'
+#' }
+#' 
 #' @export
 "SVAR" <-
 function (x, estmethod = c("scoring", "direct"), Amat = NULL,

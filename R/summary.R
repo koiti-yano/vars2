@@ -74,17 +74,5 @@
 #' max.iter = 100, maxls = 1000, conv.crit = 1.0e-8)
 #' summary(svar.a)
 #' 
-#' ## summary-method for svecest
-#' library(urca)
-#' vecm <- ca.jo(Canada[, c("prod", "e", "U", "rw")], type = "trace",
-#'               ecdet = "trend", K = 3, spec = "transitory")
-#' SR <- matrix(NA, nrow = 4, ncol = 4)
-#' SR[4, 2] <- 0
-#' LR <- matrix(NA, nrow = 4, ncol = 4)
-#' LR[1, 2:4] <- 0
-#' LR[2:4, 4] <- 0
-#' svec.b <- SVEC(vecm, LR = LR, SR = SR, r = 1, lrtest = FALSE, boot =
-#' FALSE)
-#' summary(svec.b)
 #'
 NULL

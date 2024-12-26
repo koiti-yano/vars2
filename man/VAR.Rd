@@ -16,7 +16,9 @@ VAR(
 )
 }
 \arguments{
-\item{y}{Data item containing the endogenous variables (ts or tibble)}
+\item{y}{Data item containing the endogenous variables (ts, df, and tibble).
+Note that the function will only use the numeric columns of a df or a tbl by
+"select_if(y, is.numeric)".}
 
 \item{p}{Integer for the lag order (default is p=1).}
 
@@ -73,11 +75,19 @@ in \code{ic}, the default is Akaike.
 }
 \examples{
 
+\donttest{
 data(Canada)
 VAR(Canada, p = 2, type = "none")
 VAR(Canada, p = 2, type = "const")
 VAR(Canada, p = 2, type = "trend")
 VAR(Canada, p = 2, type = "both")
+
+data(Canada_tbl)
+VAR(Canada_tbl, p = 2, type = "none")
+VAR(Canada_tbl, p = 2, type = "const")
+VAR(Canada_tbl, p = 2, type = "trend")
+VAR(Canada_tbl, p = 2, type = "both")
+}
 
 }
 \references{
