@@ -44,8 +44,8 @@ ggplot.lpirfs_lin_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
   
   # Check class
   if (class(irf) %in% "lpirfs_lin_obj") {
-  } else{
-    stop("Only 'lpirfs_lin_obj' class object from lpirfs::lp_lin()")
+  } else {
+    stop("Object is not 'lpirfs_lin_obj' lpirfs::lp_lin()")
   }
 
   # dev.new() if dev_new is TRUE.
@@ -60,21 +60,21 @@ ggplot.lpirfs_lin_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
   dimnames(irf$irf_lin_mean)[[1]] <- var_name
   dimnames(irf$irf_lin_mean)[[3]] <- var_name
   irf$irf_lin_mean -> irf_tmp
-  irf_mean<- lapply(seq(dim(irf_tmp)[3]), 
+  irf_mean <- lapply(seq(dim(irf_tmp)[3]), 
                     function(x) t(irf_tmp[ , , x]))
   names(irf_mean) <- var_name
   # Lower bound of IRF
   dimnames(irf$irf_lin_low)[[1]] <- var_name
   dimnames(irf$irf_lin_low)[[3]] <- var_name
-  irf$irf_lin_low -> irf_lower_tmp
-  irf_lower <- lapply(seq(dim(irf_lower_tmp)[3]), 
-                      function(x) t(irf_lower_tmp[ , , x]))
+  irf$irf_lin_low -> irf_low_tmp
+  irf_lower <- lapply(seq(dim(irf_low_tmp)[3]), 
+                      function(x) t(irf_low_tmp[ , , x]))
   # Upper bound of IRF 
   dimnames(irf$irf_lin_up)[[1]] <- var_name
   dimnames(irf$irf_lin_up)[[3]] <- var_name
-  irf$irf_lin_up -> irf_upper_tmp
-  irf_upper <- lapply(seq(dim(irf_upper_tmp)[3]), 
-                      function(x) t(irf_upper_tmp[ , , x]))
+  irf$irf_lin_up -> irf_up_tmp
+  irf_upper <- lapply(seq(dim(irf_up_tmp)[3]), 
+                      function(x) t(irf_up_tmp[ , , x]))
   # Make irf of varirf object
   irf <- NULL
   irf <- list(irf=irf_mean, Upper=irf_upper, Lower=irf_lower,
@@ -161,4 +161,5 @@ ggplot.lpirfs_lin_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
       ggplot2::scale_x_continuous(labels = as.integer) 
   }
   return(plot)
+  
 }
