@@ -17,7 +17,7 @@ devtools::install_github("koiti-yano/vars2")
 + Tibbles: The VAR and VARselect functions accept a tibble (including df) as input y and some useful tools are added
 + ggplot2: Impulse response plots with ggplot2 (the ggplot code for vars2 is based on Victor Espinoza's work and my own. See DESCRIPTION)
 
-<img src="tools/figure/plot_irf_with_vars2.png" width="600">
+<img src="tools/figure/plot_irf_with_vars2.png" width="800">
 
 ## Koiti' note
 2024-04-09: After reaching out with the intention to fork ‘vars’, I received a generous and kind response from Dr. Bernhard Pfaff. I would like to express my gratitude for his significant contributions to the creation of many R packages, including ‘vars’, and I hereby record my appreciation for his great work.

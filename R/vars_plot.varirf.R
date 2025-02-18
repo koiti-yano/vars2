@@ -19,6 +19,8 @@
 #' @importFrom dplyr full_join mutate
 #' @importFrom tibble is_tibble add_column
 #' @importFrom tidyr unnest pivot_longer
+#' @importFrom ggplot2 is.ggplot
+#' @importFrom grid is.grob
 #' @importFrom patchwork wrap_plots
 #'
 #' @references Victor Espinoza, (2022), 
@@ -116,7 +118,7 @@
         
       }
     }
-    plot <- wrap_plots(plot_list, byrow=F, 
+    plot <- patchwork::wrap_plots(plot_list, byrow=F, 
                       axes = "collect_x", 
                       ncol = num_imp, nrow = num_rsp) 
   } else if (graph_style=="vic"){
