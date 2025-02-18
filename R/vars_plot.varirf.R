@@ -17,7 +17,6 @@
 #' @importFrom dplyr full_join mutate
 #' @importFrom tibble is_tibble add_column
 #' @importFrom tidyr unnest pivot_longer
-#' @importFrom patchwork wrap_plots
 #'
 #' @references Victor Espinoza, (2022), 
 #' "Plot() impulse response function - show more than one in one window?,"
