@@ -9,7 +9,8 @@
   main = NULL,
   sub = NULL,
   cap = NULL,
-  var_name = NULL,
+  resp_name = NULL,
+  imp_name = NULL,
   dev_new = FALSE,
   graph_style = "pw",
   ...
@@ -18,14 +19,15 @@
 \arguments{
 \item{irf}{impulse responses of VAR or SVAR}
 
-\item{main}{main title of plot (The default is NULL, in which case the main
-title is generated automatically.)}
+\item{main}{main title of plot (not implemented yet)}
 
-\item{sub}{subtitile of plot}
+\item{sub}{subtitile of plot (not implemented yet)}
 
-\item{cap}{caption of plot}
+\item{cap}{caption of plot (not implemented yet)}
 
-\item{var_name}{variable names: ex. var_name=c("Emp", "Prod", "RW", "Unemp")}
+\item{resp_name}{variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp")}
+
+\item{imp_name}{variable names of impulse: ex. imp_name=c("Emp")}
 
 \item{dev_new}{logical. If TRUE, open a new graphics device.}
 
@@ -45,8 +47,8 @@ data(Canada)
 var.2c <- VAR(Canada, p = 2, type = "const")
 irf.2c <- irf(var.2c, impulse = "e", response = c("e", "prod", "rw", "U"), boot =
 TRUE)
-ggplot(irf.2c, sub="Canada", cap="Caption",
-var_name=c("Emp", "Prod", "Real Wage", "Unemp"))
+ggplot(irf.2c, sub="Canada", cap="Caption", imp_name=c("Emp"),
+resp_name=c("Emp", "Prod", "Real Wage", "Unemp"))
 
 ## For SVAR
 amat <- diag(4)

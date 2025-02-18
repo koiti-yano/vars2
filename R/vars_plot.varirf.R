@@ -1,11 +1,11 @@
 #' Plot impulse responses of VAR and SVAR
 #' 
 #' @param irf impulse responses of VAR or SVAR
-#' @param main main title of plot (The default is NULL, in which case the main
-#' title is generated automatically.)
-#' @param sub subtitile of plot 
-#' @param cap caption of plot
-#' @param var_name variable names: ex. var_name=c("Emp", "Prod", "RW", "Unemp")
+#' @param main main title of plot (not implemented yet)
+#' @param sub subtitile of plot (not implemented yet)
+#' @param cap caption of plot (not implemented yet)
+#' @param imp_name variable names of impulse: ex. imp_name=c("Emp")
+#' @param resp_name variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp")
 #' @param dev_new logical. If TRUE, open a new graphics device.
 #' @param \dots further arguments passed to or from other methods 
 #' (currently not used).
@@ -13,6 +13,7 @@
 #' 
 #' @import stats
 #' @importFrom ggplot2 ggplot labs ylab xlab ggtitle facet_grid 
+#' @importFrom ggplot2 aes
 #' @importFrom ggplot2 geom_line geom_ribbon geom_hline
 #' @importFrom ggplot2 scale_linetype_manual scale_x_continuous
 #' @importFrom dplyr full_join mutate
@@ -32,8 +33,8 @@
 #' var.2c <- VAR(Canada, p = 2, type = "const")
 #' irf.2c <- irf(var.2c, impulse = "e", response = c("e", "prod", "rw", "U"), boot =
 #' TRUE)
-#' ggplot(irf.2c, sub="Canada", cap="Caption",
-#' var_name=c("Emp", "Prod", "Real Wage", "Unemp"))
+#' ggplot(irf.2c, sub="Canada", cap="Caption", imp_name=c("Emp"),
+#' resp_name=c("Emp", "Prod", "Real Wage", "Unemp"))
 #'
 #' ## For SVAR
 #' amat <- diag(4)
@@ -46,7 +47,7 @@
 #' }
 #' @export
 "vars_plot.varirf" <- function(irf, main=NULL, sub=NULL, cap=NULL,
-                            var_name=NULL, dev_new=FALSE, 
+                            resp_name=NULL, imp_name=NULL, dev_new=FALSE, 
                             graph_style="pw", ...){
   
   # Check class
@@ -68,6 +69,12 @@
     impulse <- irf$impulse
     response <- irf$response
     
+    #browser()
+    if ((length(impulse)==length(imp_name)) & (length(response) == length(resp_name))){
+      impulse <- imp_name
+      response <- resp_name
+    }
+
     t_end <- dim(irf_mean[[1]])[1]
     
     num_imp <- length(impulse)
@@ -119,17 +126,17 @@
     fortify <- function(data){
       result <- vector(mode = "list",length = 0L)
       # var_nameの要素数が内生変数の数と異なる場合を考慮していない。要改善
-      if (!is.null(var_name) ){ 
+      if (!is.null(resp_name) ){ 
         # 
         for (d in 1:length(data)) {
           #        browser()
-          colnames(data[[d]]) <- var_name
-          result[[length(result)+1]] <- tibble::tibble(imp = var_name[d],
+          colnames(data[[d]]) <- resp_name
+          result[[length(result)+1]] <- tibble::tibble(imp = resp_name[d],
                                                        Time = 0:{nrow(data[[d]])-1},
                                                        tibble::as_tibble(data[[d]]))
         }
       } else {
-        # use column names if var_name is NULL
+        # use column names if resp_name is NULL
         for (d in 1:length(data)) {
           result[[length(result)+1]] <- tibble::tibble(imp = names(data)[d],
                                                        Time = 0:{nrow(data[[d]])-1},
