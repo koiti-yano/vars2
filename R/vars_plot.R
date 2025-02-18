@@ -5,6 +5,6 @@
 #' (currently not used).
 #' 
 #' @export
-"ggplot" <- function(irf, ...){
-  UseMethod("ggplot", irf)
+"vars_plot" <- function(irf, ...){
+  UseMethod("vars_plot", irf)
 }
