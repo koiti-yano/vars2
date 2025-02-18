@@ -12,11 +12,13 @@
 #' @return A ggplot object
 #' 
 #' @import stats
-#' @importFrom ggplot2 ggplot labs facet_grid geom_hline 
+#' @importFrom ggplot2 ggplot labs ylab xlab ggtitle facet_grid 
+#' @importFrom ggplot2 geom_line geom_ribbon geom_hline
 #' @importFrom ggplot2 scale_linetype_manual scale_x_continuous
 #' @importFrom dplyr full_join mutate
 #' @importFrom tibble is_tibble add_column
 #' @importFrom tidyr unnest pivot_longer
+#' @importFrom patchwork wrap_plots
 #'
 #' @references Victor Espinoza, (2022), 
 #' "Plot() impulse response function - show more than one in one window?,"
@@ -44,8 +46,8 @@
 #' }
 #' @export
 "vars_plot.varirf" <- function(irf, main=NULL, sub=NULL, cap=NULL,
-                            var_name=NULL, dev_new=FALSE, graph_style="vic",
-                            ...){
+                            var_name=NULL, dev_new=FALSE, 
+                            graph_style="pw", ...){
   
   # Check class
   if (class(irf) %in% "varirf") {
@@ -57,8 +59,59 @@
   if (isTRUE(dev_new)){ dev.new() } else { } 
   
   
-  if(graph_style=="patchwork"){
+  if(graph_style=="pw"){
+    plot_list <- list(NaN)
     
+    irf_mean <- irf$irf
+    irf_lower <- irf$Lower
+    irf_upper <- irf$Upper
+    impulse <- irf$impulse
+    response <- irf$response
+    
+    t_end <- dim(irf_mean[[1]])[1]
+    
+    num_imp <- length(impulse)
+    num_rsp <- length(response)
+    
+    plot_num <- 1
+    for (imp in 1:num_imp) {
+      for (rsp in 1:num_rsp) {
+        
+        if(is.null(irf_lower[[imp]][,rsp])){
+          data.frame(time=1:t_end, mean=irf_mean[[imp]][,rsp],
+                     low=irf_mean[[imp]][,rsp], 
+                     upp=irf_mean[[imp]][,rsp]) -> irf_tbl
+        } else {
+          data.frame(time=1:t_end, mean=irf_mean[[imp]][,rsp],
+                     low=irf_lower[[imp]][,rsp], 
+                     upp=irf_upper[[imp]][,rsp]) -> irf_tbl
+        } 
+        
+        if(rsp==1){
+          irf_tbl |> ggplot() +
+            geom_line(aes(x = time, y = mean)) +
+            geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
+            ylab(paste("Resp. of ",response[rsp])) + xlab("Time") +
+            ggtitle(paste("Impulse from ",impulse[imp])) +
+            geom_hline(yintercept = 0, col = "red", 
+                       linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]] 
+        } else {
+          irf_tbl |> ggplot() + 
+            geom_line(aes(x = time, y = mean)) +
+            geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
+            ylab(paste("Resp. of ",response[rsp])) + xlab("Time") +
+            #        ggtitle(paste("Impulse from ",impulse[imp])) +
+            geom_hline(yintercept = 0, col = "red", 
+                       linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]]
+          
+        }
+        plot_num <- plot_num + 1
+        
+      }
+    }
+    plot <- wrap_plots(plot_list, byrow=F, 
+                      axes = "collect_x", 
+                      ncol = num_imp, nrow = num_rsp) 
   } else if (graph_style=="vic"){
     # No visible binding for global variable
     # https://www.r-bloggers.com/2019/08/no-visible-binding-for-global-variable/

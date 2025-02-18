@@ -10,7 +10,6 @@ vars_plot(var_p2_irf)
 var_p2_irf_boot <- irf(var_p2)
 vars_plot(var_p2_irf_boot)
 
-
 # boot=TRUE
 var_p2_irf_e_boot <- irf(var_p2,impulse = "e",
                          response = c("e", "prod", "rw", "U"))

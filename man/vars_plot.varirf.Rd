@@ -11,7 +11,7 @@
   cap = NULL,
   var_name = NULL,
   dev_new = FALSE,
-  graph_style = "vic",
+  graph_style = "pw",
   ...
 )
 }
