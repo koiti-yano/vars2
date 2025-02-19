@@ -22,7 +22,7 @@
 #' @importFrom ggplot2 is.ggplot
 #' @importFrom grid is.grob
 #' @importFrom patchwork wrap_plots
-#'
+#' 
 #' @references Victor Espinoza, (2022), 
 #' "Plot() impulse response function - show more than one in one window?,"
 #' stackoverflow. \url{https://stackoverflow.com/questions/68010256/plot-impulse-response-function-show-more-than-one-in-one-window}
@@ -35,7 +35,7 @@
 #' var.2c <- VAR(Canada, p = 2, type = "const")
 #' irf.2c <- irf(var.2c, impulse = "e", response = c("e", "prod", "rw", "U"), boot =
 #' TRUE)
-#' ggplot(irf.2c, sub="Canada", cap="Caption", imp_name=c("Emp"),
+#' vars_plot(irf.2c, sub="Canada", cap="Caption", imp_name=c("Emp"),
 #' resp_name=c("Emp", "Prod", "Real Wage", "Unemp"))
 #'
 #' ## For SVAR
@@ -43,7 +43,7 @@
 #' diag(amat) <- NA
 #' svar.a <- SVAR(var.2c, estmethod = "direct", Amat = amat)
 #' irf.sa <- irf(svar.a)
-#' ggplot(irf.sa, main="Canada", sub="Structural IRF", 
+#' vars_plot(irf.sa, main="Canada", sub="Structural IRF", 
 #' cap="Caption: The original time series are published by the OECD.",
 #' var_name=c("Emp", "Prod", "Real Wage", "Unemp"), dev_new=TRUE)
 #' }
@@ -118,7 +118,7 @@
         
       }
     }
-    plot <- patchwork::wrap_plots(plot_list, byrow=F, 
+    plot <- wrap_plots(plot_list, byrow=F, 
                       axes = "collect_x", 
                       ncol = num_imp, nrow = num_rsp) 
   } else if (graph_style=="vic"){

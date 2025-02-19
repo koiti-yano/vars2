@@ -82,13 +82,13 @@ or \eqn{\Phi^*} depending whether \code{ortho = TRUE}. In case
 cumulated impulse response coefficients.
 }
 \examples{
-
+\donttest{
 data(Canada)
 ## For VAR
 var.2c <- VAR(Canada, p = 2, type = "const")
 irf.2c <- irf(var.2c, impulse = "e", response = c("e", "prod", "rw", "U"), boot =
 TRUE)
-ggplot(irf.2c)
+vars_plot(irf.2c)
 
 ## For SVAR
 amat <- diag(4)
@@ -96,7 +96,8 @@ diag(amat) <- NA
 svar.a <- SVAR(var.2c, estmethod = "direct", Amat = amat)
 irf.sa <- irf(svar.a, impulse = "e", response = c("e", "prod", "rw", "U"), boot =
 TRUE)
-ggplot(irf.sa)
+vars_plot(irf.sa)
+}
 
 }
 \references{
