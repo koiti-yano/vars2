@@ -64,7 +64,6 @@ vars_plot.lpirfs_lin_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
   num_imp <- length(impulse)
   num_rsp <- length(response)
   
-  dev.new()
   plot_num <- 1
   for (imp in 1:num_imp) {
     for (rsp in 1:num_rsp) {
