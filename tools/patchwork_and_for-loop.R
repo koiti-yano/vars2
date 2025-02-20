@@ -6,38 +6,46 @@
 rm(list=ls())
 require(tidyverse)
 require(vars2)
+require(lpirfs)
+require(patchwork)
 
-data("Canada_tbl")
-var_p2 <- VAR(Canada_tbl,2)
+lp_p2_irf <- lp_lin(endog_data= Canada_tbl[,2:5], lags_endog_lin = 2,
+                    trend = 0, shock_type  = 1, confint = 1.96, hor = 10)
+# Show all impule responses
+# Compare with Figure 5 in Jordà (2005)
+vars_plot(lp_p2_irf)
 
-# boot=FALSE
-irf <- irf(var_p2, boot=T)
+irf <- lp_p2_irf
 
 plot_list <- list(NaN)
 
-irf_mean <- irf$irf
-irf_lower <- irf$Lower
-irf_upper <- irf$Upper
-impulse <- irf$impulse
-response <- irf$response
+irf_mean <- irf$irf_lin_mean
+irf_lower <- irf$irf_lin_low
+irf_upper <- irf$irf_lin_up
+impulse <- irf$specs$column_names
+response <- irf$specs$column_names
 
-t_end <- dim(irf_mean[[1]])[1]
+t_end <- irf$specs$hor
 
 num_imp <- length(impulse)
 num_rsp <- length(response)
 
+dev.new()
 plot_num <- 1
 for (imp in 1:num_imp) {
   for (rsp in 1:num_rsp) {
-    
-    if(is.null(irf_lower[[imp]][,rsp])){
-      data.frame(time=1:t_end, mean=irf_mean[[imp]][,rsp],
-                 low=irf_mean[[imp]][,rsp], 
-                 upp=irf_mean[[imp]][,rsp]) -> irf_tbl
+    #q:「信頼区間がある場合はlowとuppに値を入れる」を英語に訳して
+    #q: 「信頼区間がない場合はmeanをlowとuppに入れる」を英語に訳して
+    #a: "If there is a confidence interval, put the value in low and upp."  
+    #a: "If there is no confidence interval, put the mean in low and upp."
+    if(is.null(irf_lower[,,imp][,rsp])){
+      data.frame(time=1:t_end, mean=as.matrix(t(irf_mean[,1:t_end,imp]))[, rsp], 
+                 low=(as.matrix(t(irf_mean[,1:t_end,imp]))[, rsp]), # enter mean in low
+                 upp=as.matrix(t(irf_mean[,1:t_end,imp]))[, rsp]) -> irf_tbl # enter mean in upp
     } else {
-      data.frame(time=1:t_end, mean=irf_mean[[imp]][,rsp],
-                 low=irf_lower[[imp]][,rsp], 
-                 upp=irf_upper[[imp]][,rsp]) -> irf_tbl
+      data.frame(time=1:t_end, mean=as.matrix(t(irf_mean[,1:t_end,imp]))[, rsp], 
+                 low=(as.matrix(t(irf_lower[,1:t_end,imp]))[, rsp]), # 
+                 upp=as.matrix(t(irf_upper[,1:t_end,imp]))[, rsp]) -> irf_tbl # p
     } 
     
     if(rsp==1){
