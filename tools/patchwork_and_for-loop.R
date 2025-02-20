@@ -7,7 +7,7 @@ rm(list=ls())
 require(tidyverse)
 require(vars2)
 require(lpirfs)
-require(patchwork)
+#require(patchwork)
 
 lp_p2_irf <- lp_lin(endog_data= Canada_tbl[,2:5], lags_endog_lin = 2,
                     trend = 0, shock_type  = 1, confint = 1.96, hor = 10)
