@@ -13,7 +13,7 @@ The modified version of vars is now being tentatively referred to as vars2. This
 devtools::install_github("koiti-yano/vars2")
 ```
 
-## New Features of vars2
+## New features of vars2
 + Tibbles: The VAR and VARselect functions accept a tibble (including df) as input y and some useful tools are added
 + ggplot2: Impulse response plots with ggplot2 (the ggplot code for vars2 is based on Victor Espinoza's work and my own. See DESCRIPTION)
 
