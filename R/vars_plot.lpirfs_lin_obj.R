@@ -35,14 +35,14 @@
 #' }
 #' @export
 vars_plot.lpirfs_lin_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
-                            var_name=NULL, dev_new=FALSE, ...){
+                                     var_name=NULL, dev_new=FALSE, ...){
   
   # Check class
   if (class(irf) %in% "lpirfs_lin_obj") {
   } else {
     stop("Object is not 'lpirfs_lin_obj' lpirfs::lp_lin()")
   }
-
+  
   # dev.new() if dev_new is TRUE.
   if (isTRUE(dev_new)){ dev.new() } else { } 
   
