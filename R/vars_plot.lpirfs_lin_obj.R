@@ -2,10 +2,10 @@
 #'  
 #' @param irf impulse responses of lp_lin in lpirfs 
 #' @param main main title of plot (The default is NULL, in which case the main
-#' title is generated automatically.)
-#' @param sub subtitile of plot 
-#' @param cap caption of plot
-#' @param var_name variable names: ex. var_name=c("Emp", "Prod", "RW", "Unemp")
+#' title is generated automatically.), (not implemented yet)
+#' @param sub subtitile of plot, (not implemented yet)
+#' @param cap caption of plot, (not implemented yet)
+#' @param var_name variable names: ex. var_name=c("Emp", "Prod", "RW", "Unemp"), (not implemented yet)
 #' @param dev_new logical. If TRUE, open a new graphics device.
 #' @param \dots further arguments passed to or from other methods 
 #' (currently not used).

@@ -4,8 +4,8 @@
 #' @param main main title of plot (not implemented yet)
 #' @param sub subtitile of plot (not implemented yet)
 #' @param cap caption of plot (not implemented yet)
-#' @param imp_name variable names of impulse: ex. imp_name=c("Emp")
-#' @param resp_name variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp")
+#' @param imp_name variable names of impulse: ex. imp_name=c("Emp"), (not implemented yet)
+#' @param resp_name variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp"), (not implemented yet)
 #' @param dev_new logical. If TRUE, open a new graphics device.
 #' @param \dots further arguments passed to or from other methods 
 #' (currently not used).
