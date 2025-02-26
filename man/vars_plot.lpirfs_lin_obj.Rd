@@ -18,13 +18,13 @@
 \item{irf}{impulse responses of lp_lin in lpirfs}
 
 \item{main}{main title of plot (The default is NULL, in which case the main
-title is generated automatically.)}
+title is generated automatically.), (not implemented yet)}
 
-\item{sub}{subtitile of plot}
+\item{sub}{subtitile of plot, (not implemented yet)}
 
-\item{cap}{caption of plot}
+\item{cap}{caption of plot, (not implemented yet)}
 
-\item{var_name}{variable names: ex. var_name=c("Emp", "Prod", "RW", "Unemp")}
+\item{var_name}{variable names: ex. var_name=c("Emp", "Prod", "RW", "Unemp"), (not implemented yet)}
 
 \item{dev_new}{logical. If TRUE, open a new graphics device.}
 

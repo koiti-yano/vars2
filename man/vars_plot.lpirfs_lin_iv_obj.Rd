@@ -28,9 +28,9 @@
 \item{\dots}{further arguments passed to or from other methods 
 (currently not used).}
 
-\item{imp_name}{variable names of impulse: ex. imp_name=c("Emp")}
+\item{imp_name}{variable names of impulse: ex. imp_name=c("Emp"), (not implemented yet)}
 
-\item{resp_name}{variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp")}
+\item{resp_name}{variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp"), (not implemented yet)}
 }
 \value{
 A ggplot object
