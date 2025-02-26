@@ -48,11 +48,6 @@ trend = 0, shock_type  = 1, confint = 1.96, hor = 10)
 vars_plot(lp_p2_irf, dev_new=TRUE)
 }
 }
-\references{
-Victor Espinoza, (2022), 
-"Plot() impulse response function - show more than one in one window?,"
-stackoverflow. \url{https://stackoverflow.com/questions/68010256/plot-impulse-response-function-show-more-than-one-in-one-window}
-}
 \author{
-Victor Espinoza (stackoverflow), Koichi (Koiti) Yano
+Koichi (Koiti) Yano
 }
