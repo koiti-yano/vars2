@@ -1,5 +1,16 @@
 #' Plot impulse responses of lp_lin_iv in lpirfs 
 #' 
+#' @param irf impulse responses of of lp_lin_iv in lpirfs
+#' @param main main title of plot (not implemented yet)
+#' @param sub subtitile of plot (not implemented yet)
+#' @param cap caption of plot (not implemented yet)
+#' @param imp_name variable names of impulse: ex. imp_name=c("Emp")
+#' @param resp_name variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp")
+#' @param dev_new logical. If TRUE, open a new graphics device.
+#' @param \dots further arguments passed to or from other methods 
+#' (currently not used).
+#' @return A ggplot object
+
 #' @import stats
 #' @importFrom ggplot2 ggplot labs facet_grid geom_hline 
 #' @importFrom ggplot2 scale_linetype_manual scale_x_continuous
@@ -8,6 +19,36 @@
 #' @importFrom tidyr unnest pivot_longer
 #'
 #' @author Koichi (Koiti) Yano
+#' 
+#' @examples
+#' \dontrun{
+#' require(vars2)
+#' require(lpirfs)
+#' # Set seed for reproducibility
+#' set.seed(007)
+#' ag_data       <- ag_data
+#' sample_start  <- 7
+#' sample_end    <- dim(ag_data)[1]
+#' # Endogenous data
+#' endog_data    <- ag_data[sample_start:sample_end,3:5]
+#' # [Blanchard and Perotti (2002)]
+#' # Variable to shock with. Here government spending due to
+#' # Blanchard and Perotti (2002) framework
+#' shock         <- ag_data[sample_start:sample_end, 3]
+#' # Generate instrument variable that is correlated with government spending
+#' instrum       <- as.data.frame(0.9*shock$Gov + rnorm(length(shock$Gov), 0, 0.02) )
+#' irf_lp_iv2 <- lp_lin_iv(endog_data,
+#' lags_endog_lin = 4,
+#' shock          = shock,
+#' instrum        = instrum,
+#' use_twosls     = TRUE,
+#' trend          = 0,
+#' confint        = 1.96,
+#' hor            = 20)
+#' # Show all responses
+#' vars_plot(irf_lp_iv2,dev_new = T)
+#' }
+#' 
 #' @export
 
 vars_plot.lpirfs_lin_iv_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,

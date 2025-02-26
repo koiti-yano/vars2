@@ -14,14 +14,60 @@
   ...
 )
 }
+\arguments{
+\item{irf}{impulse responses of of lp_lin_iv in lpirfs}
+
+\item{main}{main title of plot (not implemented yet)}
+
+\item{sub}{subtitile of plot (not implemented yet)}
+
+\item{cap}{caption of plot (not implemented yet)}
+
+\item{dev_new}{logical. If TRUE, open a new graphics device.}
+
+\item{\dots}{further arguments passed to or from other methods 
+(currently not used).}
+
+\item{imp_name}{variable names of impulse: ex. imp_name=c("Emp")}
+
+\item{resp_name}{variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp")}
+}
+\value{
+A ggplot object
+}
 \description{
 Plot impulse responses of lp_lin_iv in lpirfs
 }
-\references{
-Victor Espinoza, (2022), 
-"Plot() impulse response function - show more than one in one window?,"
-stackoverflow. \url{https://stackoverflow.com/questions/68010256/plot-impulse-response-function-show-more-than-one-in-one-window}
+\examples{
+\dontrun{
+require(vars2)
+require(lpirfs)
+# Set seed for reproducibility
+set.seed(007)
+ag_data       <- ag_data
+sample_start  <- 7
+sample_end    <- dim(ag_data)[1]
+# Endogenous data
+endog_data    <- ag_data[sample_start:sample_end,3:5]
+# [Blanchard and Perotti (2002)]
+# Variable to shock with. Here government spending due to
+# Blanchard and Perotti (2002) framework
+shock         <- ag_data[sample_start:sample_end, 3]
+# Generate instrument variable that is correlated with government spending
+instrum       <- as.data.frame(0.9*shock$Gov + rnorm(length(shock$Gov), 0, 0.02) )
+irf_lp_iv2 <- lp_lin_iv(endog_data,
+lags_endog_lin = 4,
+shock          = shock,
+instrum        = instrum,
+use_twosls     = TRUE,
+trend          = 0,
+confint        = 1.96,
+hor            = 20)
+# Show all responses
+vars_plot(irf_lp_iv2,dev_new = T)
+}
+
 }
 \author{
-Victor Espinoza (stackoverflow), Koichi (Koiti) Yano
+Koichi (Koiti) Yano
 }
