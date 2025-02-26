@@ -18,10 +18,7 @@
 #' @importFrom tibble is_tibble add_column
 #' @importFrom tidyr unnest pivot_longer
 #'
-#' @references Victor Espinoza, (2022), 
-#' "Plot() impulse response function - show more than one in one window?,"
-#' stackoverflow. \url{https://stackoverflow.com/questions/68010256/plot-impulse-response-function-show-more-than-one-in-one-window}
-#' @author Victor Espinoza (stackoverflow), Koichi (Koiti) Yano
+#' @author Koichi (Koiti) Yano
 #'
 #' @examples
 #'\dontrun{

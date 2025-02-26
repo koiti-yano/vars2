@@ -6,7 +6,6 @@ require(vars2)
 require(lpirfs)
 #require(patchwork)
 
-require(lpirfs)
 ag_data       <- ag_data
 sample_start  <- 7
 sample_end    <- dim(ag_data)[1]
