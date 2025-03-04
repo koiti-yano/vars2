@@ -1,5 +1,8 @@
 # vars2 
 
+Note: I recently came across https://github.com/cheaton/vars2 by chance. 
+Since cheaton used the name 'vars2' first, I think I should rename my 'vars2'.
+
 
 ## Vector autoregression (a slightly modified version of vars) <img align="right" src="/tools/hex_vars2.png" width="120">
 
