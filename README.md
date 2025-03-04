@@ -1,4 +1,4 @@
-# vars2 
+# vars2a 
 
 Note: I recently came across https://github.com/cheaton/vars2 by chance. 
 Since cheaton used the name 'vars2' first, I think I should rename my 'vars2'.
@@ -10,13 +10,13 @@ The R package ‘vars’, created by Bernhard Pfaff, is an extremely powerful to
 
 Recently, I have observed a growing preference among researchers and practitioners for ‘tibble’ over ‘ts’, and ‘ggplot2’ over the base plot. In response to this trend, I am planning to slightly modify vars to utilize tibble and ggplot2.  Needless to say, I respect the original intent and functionality of the ‘vars’.
 
-The modified version of vars is now being tentatively referred to as vars2. This package is currently in progress and has several incomplete parts. I welcome any suggestions or feedback for improvement
+The modified version of vars is now being tentatively referred to as vars2a. This package is currently in progress and has several incomplete parts. I welcome any suggestions or feedback for improvement
 
 ```
 devtools::install_github("koiti-yano/vars2")
 ```
 
-## New features of vars2
+## New features of vars2a
 + Tibbles: The VAR and VARselect functions accept a tibble (including df) as input y and some useful tools are added
 + ggplot2: Impulse response plots with ggplot2 (the ggplot code for vars2 is based on Victor Espinoza's work and my own. See DESCRIPTION)
 
