@@ -1,4 +1,5 @@
-require(vars2)
+rm(list=ls())
+require(vars2a)
 data("Canada_tbl")
 var_p2 <- VAR(Canada_tbl,2)
 

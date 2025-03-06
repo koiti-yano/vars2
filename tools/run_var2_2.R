@@ -1,6 +1,6 @@
-# run ggplot()
+# run vars_plot()
 rm(list=ls())
-require(vars2)
+require(vars2a)
 data(Canada_tbl)
 ## For VAR
 var_p2 <- VAR(Canada_tbl, p = 2, type = "const")

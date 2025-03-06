@@ -13,7 +13,7 @@ Recently, I have observed a growing preference among researchers and practitione
 The modified version of vars is now being tentatively referred to as vars2a. This package is currently in progress and has several incomplete parts. I welcome any suggestions or feedback for improvement
 
 ```
-devtools::install_github("koiti-yano/vars2")
+devtools::install_github("koiti-yano/vars2a")
 ```
 
 ## New features of vars2a

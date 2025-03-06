@@ -2,7 +2,7 @@
 # https://github.com/AdaemmerP/lpirfs/blob/master/R/lp_lin_iv.R
 rm(list=ls())
 require(tidyverse)
-require(vars2)
+require(vars2a)
 require(lpirfs)
 #require(patchwork)
 

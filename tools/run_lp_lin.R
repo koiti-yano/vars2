@@ -2,7 +2,7 @@
 
 rm(list=ls())
 require(tidyverse)
-require(vars2)
+require(vars2a)
 require(lpirfs)
 #require(patchwork)
 
