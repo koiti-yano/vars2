@@ -1,7 +1,7 @@
 # vars2a 
 
-Note: I recently came across https://github.com/cheaton/vars2 by chance. 
-Since cheaton used the name 'vars2' first, I think I should rename my 'vars2'.
+Note: The package is initially designated vars2; however, it is 
+subsequently redesignated vars2a due to the pre-existence of vars2.
 
 
 ## Vector autoregression (a slightly modified version of vars) <img align="right" src="/tools/hex_vars2a.png" width="120">
