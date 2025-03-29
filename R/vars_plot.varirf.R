@@ -2,7 +2,7 @@
 #' 
 #' @param irf impulse responses of VAR or SVAR
 #' @param main main title of plot
-#' @param sub subtitle of plot (not implemented yet)
+#' @param sub subtitle of plot (plan to be deprecated)
 #' @param cap caption of plot
 #' @param imp_name variable names of impulse: ex. imp_name=c("Emp")
 #' @param resp_name variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp")
