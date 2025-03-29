@@ -4,7 +4,7 @@ Note: I recently came across https://github.com/cheaton/vars2 by chance.
 Since cheaton used the name 'vars2' first, I think I should rename my 'vars2'.
 
 
-## Vector autoregression (a slightly modified version of vars) <img align="right" src="/tools/hex_vars2.png" width="120">
+## Vector autoregression (a slightly modified version of vars) <img align="right" src="/tools/hex_vars2a.png" width="120">
 
 The R package ‘vars’, created by Bernhard Pfaff, is an extremely powerful tool for time series analysis, and his contribution is truly worthy of praise in the fields of statistics and econometrics. Numerous researchers and practitioners in the fields, myself included, have greatly appreciated it and owe a considerable debt to his contributions over the years.
 
