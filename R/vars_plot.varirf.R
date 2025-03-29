@@ -1,9 +1,9 @@
 #' Plot impulse responses of VAR and SVAR
 #' 
 #' @param irf impulse responses of VAR or SVAR
-#' @param main main title of plot (not implemented yet)
-#' @param sub subtitile of plot (not implemented yet)
-#' @param cap caption of plot (not implemented yet)
+#' @param main main title of plot
+#' @param sub subtitle of plot (not implemented yet)
+#' @param cap caption of plot
 #' @param imp_name variable names of impulse: ex. imp_name=c("Emp")
 #' @param resp_name variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp")
 #' @param dev_new logical. If TRUE, open a new graphics device.
@@ -26,7 +26,7 @@
 #' @references Victor Espinoza, (2022), 
 #' "Plot() impulse response function - show more than one in one window?,"
 #' stackoverflow. \url{https://stackoverflow.com/questions/68010256/plot-impulse-response-function-show-more-than-one-in-one-window}
-#' @author Victor Espinoza (stackoverflow), Koichi (Koiti) Yano
+#' @author Koichi (Koiti) Yano, Victor Espinoza (stackoverflow)
 #'
 #' @examples
 #'\donttest{
@@ -48,7 +48,7 @@
 #' var_name=c("Emp", "Prod", "Real Wage", "Unemp"), dev_new=TRUE)
 #' }
 #' @export
-"vars_plot.varirf" <- function(irf, main=NULL, sub=NULL, cap=NULL,
+"vars_plot.varirf" <- function(irf, main=NULL, cap=NULL,
                             resp_name=NULL, imp_name=NULL, dev_new=FALSE, 
                             graph_style="pw", ...){
   
@@ -96,20 +96,42 @@
                      upp=irf_upper[[imp]][,rsp]) -> irf_tbl
         } 
         
-        if(rsp==1){
+        # Title and subtitle of IRF
+        if(is.null(main)) {
+          irf_title <- paste("Impulse from ",impulse[imp])
+          irf_subtitle <- NULL
+        } else {
+          irf_title <- main
+          irf_subtitle <- paste("Impulse from ",impulse[imp])
+        }
+        if(is.null(cap)) {
+          irf_caption <- NULL
+        } else {
+          irf_caption <- cap
+        }
+        
+        if(rsp==1){ # Add main title if rsp=1
           irf_tbl |> ggplot() +
             geom_line(aes(x = time, y = mean)) +
             geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
             ylab(paste("Resp. of ",response[rsp])) + xlab("Time") +
-            ggtitle(paste("Impulse from ",impulse[imp])) +
+            labs(title=irf_title, subtitle=irf_subtitle) +
             geom_hline(yintercept = 0, col = "red", 
                        linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]] 
-        } else {
+        } else if (rsp==num_rsp) { # Add caption if rsp=num_rsp
           irf_tbl |> ggplot() + 
             geom_line(aes(x = time, y = mean)) +
             geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
             ylab(paste("Resp. of ",response[rsp])) + xlab("Time") +
-            #        ggtitle(paste("Impulse from ",impulse[imp])) +
+            labs(caption=irf_caption) +
+            geom_hline(yintercept = 0, col = "red", 
+                       linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]]
+          
+        } else { # The other cases
+          irf_tbl |> ggplot() + 
+            geom_line(aes(x = time, y = mean)) +
+            geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
+            ylab(paste("Resp. of ",response[rsp])) + xlab("Time") +
             geom_hline(yintercept = 0, col = "red", 
                        linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]]
           

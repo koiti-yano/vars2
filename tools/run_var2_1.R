@@ -21,4 +21,5 @@ vars_plot(var_p2_irf_e_boot)
 var_p2_irf_e_boot <- irf(var_p2,impulse = "e",
                          response = c("e", "prod", "rw", "U"),
                          boot=FALSE)
-vars_plot(var_p2_irf_e_boot, main="Canada", sub="Orthogonal IRF", cap=NULL)
+vars_plot(var_p2_irf_e_boot, main="Canada", sub="Orthogonal IRF", 
+          cap="Caption: IRFs from vars")

@@ -7,7 +7,6 @@
 \method{vars_plot}{varirf}(
   irf,
   main = NULL,
-  sub = NULL,
   cap = NULL,
   resp_name = NULL,
   imp_name = NULL,
@@ -19,11 +18,9 @@
 \arguments{
 \item{irf}{impulse responses of VAR or SVAR}
 
-\item{main}{main title of plot (not implemented yet)}
+\item{main}{main title of plot}
 
-\item{sub}{subtitile of plot (not implemented yet)}
-
-\item{cap}{caption of plot (not implemented yet)}
+\item{cap}{caption of plot}
 
 \item{resp_name}{variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp")}
 
@@ -33,6 +30,8 @@
 
 \item{\dots}{further arguments passed to or from other methods 
 (currently not used).}
+
+\item{sub}{subtitle of plot (not implemented yet)}
 }
 \value{
 A ggplot object
@@ -66,5 +65,5 @@ Victor Espinoza, (2022),
 stackoverflow. \url{https://stackoverflow.com/questions/68010256/plot-impulse-response-function-show-more-than-one-in-one-window}
 }
 \author{
-Victor Espinoza (stackoverflow), Koichi (Koiti) Yano
+Koichi (Koiti) Yano, Victor Espinoza (stackoverflow)
 }
