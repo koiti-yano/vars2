@@ -7,7 +7,7 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 #library(testthat)
-library(vars2)
+library(vars2a)
 
 #test_check("vars2")
 

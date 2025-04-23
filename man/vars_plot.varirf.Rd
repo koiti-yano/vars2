@@ -31,7 +31,7 @@
 \item{\dots}{further arguments passed to or from other methods 
 (currently not used).}
 
-\item{sub}{subtitle of plot (not implemented yet)}
+\item{sub}{subtitle of plot (plan to be deprecated)}
 }
 \value{
 A ggplot object

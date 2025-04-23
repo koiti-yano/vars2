@@ -40,17 +40,6 @@ This function enables the user to transform a vector-error-correction model
 be submitted, \emph{i.e.} how many cointegration relationships have been
 determined according to the outcome of \command{ca.jo()}.
 }
-\examples{
-\dontrun{
-# devtools::check() make errors. The following example is not run.
-library(urca)
-data(finland)
-sjf <- finland
-sjf.vecm <- ca.jo(sjf, ecdet = "none", type = "eigen", K = 2,
-spec = "longrun", season = 4)
-vec2var(sjf.vecm, r = 2)
-}
-}
 \references{
 Hamilton, J. (1994), \emph{Time Series Analysis}, Princeton
 University Press, Princeton.
