@@ -1,11 +1,11 @@
 #' Plot impulse responses of lp_lin_iv in lpirfs 
 #' 
 #' @param irf impulse responses of of lp_lin_iv in lpirfs
-#' @param main main title of plot (not implemented yet)
+#' @param main main title of plot
 #' @param sub subtitile of plot (not implemented yet)
 #' @param cap caption of plot (not implemented yet)
-#' @param imp_name variable names of impulse: ex. imp_name=c("Emp"), (not implemented yet)
-#' @param resp_name variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp"), (not implemented yet)
+#' @param imp_name variable name of impulse: ex. imp_name="Gov. Spending"
+#' @param resp_name variable names of reponse: ex. resp_name=c("Output", "Consumption", "Investment")
 #' @param dev_new logical. If TRUE, open a new graphics device.
 #' @param \dots further arguments passed to or from other methods 
 #' (currently not used).
@@ -17,6 +17,7 @@
 #' @importFrom dplyr full_join mutate
 #' @importFrom tibble is_tibble add_column
 #' @importFrom tidyr unnest pivot_longer
+#' @importFrom patchwork plot_annotation
 #'
 #' @author Koichi (Koiti) Yano
 #' 
@@ -52,7 +53,7 @@
 #' @export
 
 vars_plot.lpirfs_lin_iv_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
-                                   var_name=NULL, dev_new=FALSE, ...){
+                                   imp_name=NULL, resp_name=NULL, dev_new=FALSE, ...){
 
   # Check class
   if (class(irf) %in% "lpirfs_lin_iv_obj") {
@@ -68,8 +69,16 @@ vars_plot.lpirfs_lin_iv_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
   irf_mean <- irf$irf_lin_mean
   irf_lower <- irf$irf_lin_low
   irf_upper <- irf$irf_lin_up
-  impulse <- irf$specs$column_names
+  impulse <- irf$specs$shock_name
   response <- irf$specs$column_names
+  
+  # Use user-specified names if provided and lengths match
+  if (!is.null(imp_name) && (length(impulse) == length(imp_name))) {
+    impulse <- imp_name
+  }
+  if (!is.null(resp_name) && (length(response) == length(resp_name))) {
+    response <- resp_name
+  }
   
   t_end <- irf$specs$hor
   
@@ -96,6 +105,7 @@ vars_plot.lpirfs_lin_iv_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
         geom_line(aes(x = time, y = mean)) +
         geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
         ylab(paste("Resp. of ",response[rsp])) + xlab("Time") +
+#        labs(title=irf_title, subtitle=irf_subtitle) +
         ggtitle(paste("Impulse from ",impulse)) +
         geom_hline(yintercept = 0, col = "red", 
                    linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]]
@@ -113,9 +123,11 @@ vars_plot.lpirfs_lin_iv_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
   }
 #  browser()
   
-  patchwork::wrap_plots(plot_list, byrow=F, 
+  plot <- patchwork::wrap_plots(plot_list, byrow=F, 
                         axes = "collect_x", 
-                        ncol = 1, nrow = num_rsp) -> plot
+                        ncol = 1, nrow = num_rsp) +
+    patchwork::plot_annotation(
+      title = main,
+      caption = cap)
  return(plot) 
 }
-

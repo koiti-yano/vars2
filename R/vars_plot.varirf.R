@@ -16,7 +16,7 @@
 #' @importFrom ggplot2 aes
 #' @importFrom ggplot2 geom_line geom_ribbon geom_hline
 #' @importFrom ggplot2 scale_linetype_manual scale_x_continuous
-#' @importFrom dplyr full_join mutate
+#' @importFrom dplyr full_join mutate filter
 #' @importFrom tibble is_tibble add_column
 #' @importFrom tidyr unnest pivot_longer
 #' @importFrom ggplot2 is.ggplot
@@ -97,25 +97,19 @@
         } 
         
         # Title and subtitle of IRF
-        if(is.null(main)) {
-          irf_title <- paste("Impulse from ",impulse[imp])
-          irf_subtitle <- NULL
-        } else {
-          irf_title <- main
-          irf_subtitle <- paste("Impulse from ",impulse[imp])
-        }
+        irf_title <- paste("Impulse from ",impulse[imp])
         if(is.null(cap)) {
           irf_caption <- NULL
         } else {
           irf_caption <- cap
         }
         
-        if(rsp==1){ # Add main title if rsp=1
+        if(rsp==1){ # Add title if rsp=1
           irf_tbl |> ggplot() +
             geom_line(aes(x = time, y = mean)) +
             geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
-            ylab(paste("Resp. of ",response[rsp])) + xlab("Time") +
-            labs(title=irf_title, subtitle=irf_subtitle) +
+            ylab(paste("Resp. of ",response[rsp])) + 
+            labs(title=irf_title, x="Time") +
             geom_hline(yintercept = 0, col = "red", 
                        linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]] 
         } else if (rsp==num_rsp) { # Add caption if rsp=num_rsp
@@ -123,7 +117,7 @@
             geom_line(aes(x = time, y = mean)) +
             geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
             ylab(paste("Resp. of ",response[rsp])) + xlab("Time") +
-            labs(caption=irf_caption) +
+            # labs(caption=irf_caption) + # caption is added by plot_annotation
             geom_hline(yintercept = 0, col = "red", 
                        linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]]
           
@@ -140,9 +134,12 @@
         
       }
     }
-    plot <- wrap_plots(plot_list, byrow=F, 
-                      axes = "collect_x", 
-                      ncol = num_imp, nrow = num_rsp) 
+    plot <- wrap_plots(plot_list, byrow=FALSE, 
+                       axes = "collect_x", 
+                       ncol = num_imp, nrow = num_rsp) +
+      patchwork::plot_annotation(
+        title = main,
+        caption = cap)
   } else if (graph_style=="vic"){
     # No visible binding for global variable
     # https://www.r-bloggers.com/2019/08/no-visible-binding-for-global-variable/

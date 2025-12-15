@@ -2,10 +2,11 @@
 #'  
 #' @param irf impulse responses of lp_lin in lpirfs 
 #' @param main main title of plot (The default is NULL, in which case the main
-#' title is generated automatically.), (not implemented yet)
+#' title is generated automatically.)
 #' @param sub subtitile of plot, (not implemented yet)
 #' @param cap caption of plot, (not implemented yet)
-#' @param var_name variable names: ex. var_name=c("Emp", "Prod", "RW", "Unemp"), (not implemented yet)
+#' @param imp_name variable names of impulse: ex. imp_name=c("Emp", "Prod", "RW", "Unemp")
+#' @param resp_name variable names of reponse: ex. resp_name=c("Emp", "Prod", "RW", "Unemp")
 #' @param dev_new logical. If TRUE, open a new graphics device.
 #' @param \dots further arguments passed to or from other methods 
 #' (currently not used).
@@ -18,6 +19,7 @@
 #' @importFrom tibble is_tibble add_column
 #' @importFrom tidyr unnest pivot_longer
 #'
+#' @importFrom patchwork wrap_plots plot_annotation
 #' @author Koichi (Koiti) Yano
 #'
 #' @examples
@@ -32,7 +34,7 @@
 #' }
 #' @export
 vars_plot.lpirfs_lin_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
-                                     var_name=NULL, dev_new=FALSE, ...){
+                                     imp_name=NULL, resp_name=NULL, dev_new=FALSE, ...){
   
   # Check class
   if (class(irf) %in% "lpirfs_lin_obj") {
@@ -50,6 +52,14 @@ vars_plot.lpirfs_lin_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
   irf_upper <- irf$irf_lin_up
   impulse <- irf$specs$column_names
   response <- irf$specs$column_names
+  
+  # Use user-specified names if provided and lengths match
+  if (!is.null(imp_name) && (length(impulse) == length(imp_name))) {
+    impulse <- imp_name
+  }
+  if (!is.null(resp_name) && (length(response) == length(resp_name))) {
+    response <- resp_name
+  }
   
   t_end <- irf$specs$hor
   
@@ -95,9 +105,12 @@ vars_plot.lpirfs_lin_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
       
     }
   }
-  patchwork::wrap_plots(plot_list, byrow=F, 
-                        axes = "collect_x", 
-                        ncol = num_imp, nrow = num_rsp) -> plot
+  plot <- patchwork::wrap_plots(plot_list, byrow=F,
+                        axes = "collect_x",
+                        ncol = num_imp, nrow = num_rsp) +
+    patchwork::plot_annotation(
+      title = main,
+      caption = cap)
   
   return(plot)
   
