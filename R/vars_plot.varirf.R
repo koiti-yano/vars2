@@ -72,8 +72,18 @@
     response <- irf$response
     
     #browser()
-    if ((length(impulse)==length(imp_name)) & (length(response) == length(resp_name))){
+    # If irf$impulse or irf$response is NULL, use names from irf$irf
+    if (is.null(impulse)){
+      impulse <- names(irf_mean)
+    }
+    if (is.null(response)){
+      response <- colnames(irf_mean[[1]])
+    }
+
+    if (!is.null(imp_name) && (length(impulse)==length(imp_name))){
       impulse <- imp_name
+    }
+    if (!is.null(resp_name) && (length(response) == length(resp_name))){
       response <- resp_name
     }
 
