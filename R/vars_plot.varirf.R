@@ -52,45 +52,30 @@
                                resp_name=NULL, imp_name=NULL, dev_new=FALSE, 
                                graph_style="pw", ...){
   
-  # Check class
-  if (class(irf) %in% "varirf") {
-  } else{
-    stop("Only 'varirf' class object from vars::irf()")
-  }
-  
-  # dev.new() if dev_new is TRUE.
-  if (isTRUE(dev_new)){ dev.new() } else { } 
-  
+  if (!inherits(irf, "varirf")) stop("Only 'varirf' class object from vars::irf()")
+  if (isTRUE(dev_new)) dev.new()
   
   if(graph_style=="pw"){
-    plot_list <- list(NaN)
+    plot_list <- list()
     
     irf_mean <- irf$irf
     irf_lower <- irf$Lower
     irf_upper <- irf$Upper
     
-    # --- 修正: 名前決定ロジックの改善 ---
-    # まずインパルスの数を確認
     num_imp <- length(irf_mean)
     
-    # Impulse名の決定
-    # 1. ユーザー指定がある場合は最優先
     if (!is.null(imp_name) && (length(imp_name) == num_imp)){
       impulse <- imp_name
     } else {
-      # 2. irfオブジェクトから取得
       if (!is.null(irf$impulse)) {
         impulse <- irf$impulse
       } else if (!is.null(names(irf_mean))) {
         impulse <- names(irf_mean)
       } else {
-        # 3. フォールバック
         impulse <- paste0("Impulse ", 1:num_imp)
       }
     }
     
-    # Response名の決定（とりあえず最初の要素から取得）
-    # irf_mean[[1]] が行列であることを前提
     initial_resp_names <- colnames(irf_mean[[1]])
     num_rsp <- length(initial_resp_names)
     
@@ -105,7 +90,6 @@
         response <- paste0("Response ", 1:num_rsp)
       }
     }
-    # ------------------------------------
     
     t_end <- dim(irf_mean[[1]])[1]
     
@@ -113,62 +97,37 @@
     for (imp in 1:num_imp) {
       for (rsp in 1:num_rsp) {
         
-        if(is.null(irf_lower[[imp]][,rsp])){
-          data.frame(time=1:t_end, mean=irf_mean[[imp]][,rsp],
-                     low=irf_mean[[imp]][,rsp], 
-                     upp=irf_mean[[imp]][,rsp]) -> irf_tbl
-        } else {
-          data.frame(time=1:t_end, mean=irf_mean[[imp]][,rsp],
-                     low=irf_lower[[imp]][,rsp], 
-                     upp=irf_upper[[imp]][,rsp]) -> irf_tbl
-        } 
+        mean_val <- irf_mean[[imp]][, rsp]
         
-        # Title and subtitle of IRF
-        # ここで impulse[imp] が NULL だとタイトルが消える
-        irf_title <- paste("Impulse from ", impulse[imp])
-        
-        if(is.null(cap)) {
-          irf_caption <- NULL
+        if (!is.null(irf_lower) && !is.null(irf_lower[[imp]][, rsp])) {
+          low_val <- irf_lower[[imp]][, rsp]
+          upp_val <- irf_upper[[imp]][, rsp]
         } else {
-          irf_caption <- cap
+          low_val <- mean_val
+          upp_val <- mean_val
         }
         
-        if(rsp==1){ # Add title if rsp=1
-          irf_tbl |> ggplot() +
-            geom_line(aes(x = time, y = mean)) +
-            geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
-            ylab(paste("Resp. of ",response[rsp])) + 
-            labs(title=irf_title, x="Time") +
-            geom_hline(yintercept = 0, col = "red", 
-                       linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]] 
-        } else if (rsp==num_rsp) { # Add caption if rsp=num_rsp
-          irf_tbl |> ggplot() + 
-            geom_line(aes(x = time, y = mean)) +
-            geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
-            ylab(paste("Resp. of ",response[rsp])) + xlab("Time") +
-            # labs(caption=irf_caption) + # caption is added by plot_annotation
-            geom_hline(yintercept = 0, col = "red", 
-                       linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]]
-          
-        } else { # The other cases
-          irf_tbl |> ggplot() + 
-            geom_line(aes(x = time, y = mean)) +
-            geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
-            ylab(paste("Resp. of ",response[rsp])) + xlab("Time") +
-            geom_hline(yintercept = 0, col = "red", 
-                       linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]]
-          
+        irf_tbl <- data.frame(time = 1:t_end, mean = mean_val, low = low_val, upp = upp_val)
+        
+        p <- ggplot(irf_tbl, aes(x = time, y = mean)) +
+          geom_line() +
+          geom_ribbon(aes(ymin = low, ymax = upp), alpha = 0.3) +
+          geom_hline(yintercept = 0, col = "red", linewidth = 0.5, linetype = "dashed") +
+          labs(x = "Time", y = paste("Resp. of", response[rsp]))
+        
+        if (rsp == 1) {
+          p <- p + ggtitle(paste("Impulse from", impulse[imp]))
         }
+        
+        plot_list[[plot_num]] <- p
         plot_num <- plot_num + 1
-        
       }
     }
-    plot <- wrap_plots(plot_list, byrow=FALSE, 
-                       axes = "collect_x", 
-                       ncol = num_imp, nrow = num_rsp) +
-      patchwork::plot_annotation(
-        title = main,
-        caption = cap)
+    
+    wrap_plots(plot_list, byrow = FALSE, axes = "collect_x",
+               ncol = num_imp, nrow = num_rsp) +
+      patchwork::plot_annotation(title = main, caption = cap)
+      
   } else if (graph_style=="vic"){
     # No visible binding for global variable
     # https://www.r-bloggers.com/2019/08/no-visible-binding-for-global-variable/

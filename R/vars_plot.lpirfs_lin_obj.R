@@ -36,82 +36,58 @@
 vars_plot.lpirfs_lin_obj <- function(irf, main=NULL, sub=NULL, cap=NULL,
                                      imp_name=NULL, resp_name=NULL, dev_new=FALSE, ...){
   
-  # Check class
-  if (class(irf) %in% "lpirfs_lin_obj") {
-  } else {
-    stop("Object is not 'lpirfs_lin_obj' lpirfs::lp_lin()")
-  }
-  
-  # dev.new() if dev_new is TRUE.
-  if (isTRUE(dev_new)){ dev.new() } else { } 
-  
-  plot_list <- list(NaN)
+  if (!inherits(irf, "lpirfs_lin_obj")) stop("Object is not 'lpirfs_lin_obj' lpirfs::lp_lin()")
+  if (isTRUE(dev_new)) dev.new()
   
   irf_mean <- irf$irf_lin_mean
   irf_lower <- irf$irf_lin_low
   irf_upper <- irf$irf_lin_up
+  
+  t_end <- irf$specs$hor
+  
   impulse <- irf$specs$column_names
   response <- irf$specs$column_names
   
-  # Use user-specified names if provided and lengths match
-  if (!is.null(imp_name) && (length(impulse) == length(imp_name))) {
-    impulse <- imp_name
-  }
-  if (!is.null(resp_name) && (length(response) == length(resp_name))) {
-    response <- resp_name
-  }
-  
-  t_end <- irf$specs$hor
+  if (!is.null(imp_name) && (length(impulse) == length(imp_name))) impulse <- imp_name
+  if (!is.null(resp_name) && (length(response) == length(resp_name))) response <- resp_name
   
   num_imp <- length(impulse)
   num_rsp <- length(response)
   
+  plot_list <- list()
   plot_num <- 1
+  
   for (imp in 1:num_imp) {
     for (rsp in 1:num_rsp) {
-      #q:「信頼区間がある場合はlowとuppに値を入れる」を英語に訳して
-      #q: 「信頼区間がない場合はmeanをlowとuppに入れる」を英語に訳して
-      #a: "If there is a confidence interval, put the value in low and upp."  
-      #a: "If there is no confidence interval, put the mean in low and upp."
-      if(is.null(irf_lower[,,imp][,rsp])){
-        data.frame(time=1:t_end, mean=as.matrix(t(irf_mean[,1:t_end,imp]))[, rsp], 
-                   low=(as.matrix(t(irf_mean[,1:t_end,imp]))[, rsp]), # enter mean in low
-                   upp=as.matrix(t(irf_mean[,1:t_end,imp]))[, rsp]) -> irf_tbl # enter mean in upp
-      } else {
-        data.frame(time=1:t_end, mean=as.matrix(t(irf_mean[,1:t_end,imp]))[, rsp], 
-                   low=(as.matrix(t(irf_lower[,1:t_end,imp]))[, rsp]), # 
-                   upp=as.matrix(t(irf_upper[,1:t_end,imp]))[, rsp]) -> irf_tbl # p
-      } 
       
-      if(rsp==1){
-        irf_tbl |> ggplot() +
-          geom_line(aes(x = time, y = mean)) +
-          geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
-          ylab(paste("Resp. of ",response[rsp])) + xlab("Time") +
-          ggtitle(paste("Impulse from ",impulse[imp])) +
-          geom_hline(yintercept = 0, col = "red", 
-                     linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]] 
+      mean_val <- as.matrix(t(irf_mean[, 1:t_end, imp]))[, rsp]
+      
+      if (!is.null(irf_lower) && !is.null(irf_lower[,,imp])) {
+        low_val <- as.matrix(t(irf_lower[, 1:t_end, imp]))[, rsp]
+        upp_val <- as.matrix(t(irf_upper[, 1:t_end, imp]))[, rsp]
       } else {
-        irf_tbl |> ggplot() + 
-          geom_line(aes(x = time, y = mean)) +
-          geom_ribbon(aes(x=time, y=mean, ymin=low,ymax=upp),alpha=0.3) + 
-          ylab(paste("Resp. of ",response[rsp])) + xlab("Time") +
-          #        ggtitle(paste("Impulse from ",impulse[imp])) +
-          geom_hline(yintercept = 0, col = "red", 
-                     linewidth = 0.5, linetype = "dashed") -> plot_list[[plot_num]]
-        
+        low_val <- mean_val
+        upp_val <- mean_val
       }
-      plot_num <- plot_num + 1
       
+      irf_tbl <- data.frame(time = 1:t_end, mean = mean_val, low = low_val, upp = upp_val)
+      
+      p <- ggplot(irf_tbl, aes(x = time, y = mean)) +
+        geom_line() +
+        geom_ribbon(aes(ymin = low, ymax = upp), alpha = 0.3) +
+        geom_hline(yintercept = 0, col = "red", linewidth = 0.5, linetype = "dashed") +
+        labs(x = "Time", y = paste("Resp. of", response[rsp]))
+      
+      if (rsp == 1) {
+        p <- p + ggtitle(paste("Impulse from", impulse[imp]))
+      }
+      
+      plot_list[[plot_num]] <- p
+      plot_num <- plot_num + 1
     }
   }
-  plot <- patchwork::wrap_plots(plot_list, byrow=F,
-                        axes = "collect_x",
+  
+  patchwork::wrap_plots(plot_list, byrow = FALSE, axes = "collect_x",
                         ncol = num_imp, nrow = num_rsp) +
-    patchwork::plot_annotation(
-      title = main,
-      caption = cap)
-  
-  return(plot)
-  
+    patchwork::plot_annotation(title = main, caption = cap)
 }
