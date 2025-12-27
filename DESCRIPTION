@@ -1,7 +1,7 @@
 Package: vars2a
 Type: Package
 Title: Vector Autoregressive Models: a slightly modified version of vars
-Version: 0.1.0
+Version: 0.1.1
 Author: Bernhard Pfaff [aut], Matthieu Stigler [ctb], Victor Espinoza [ctb], Koichi (Koiti) Yano [cre, ctb]
 Maintainer: Koichi (Koiti) Yano <koiti.yano@ymail.ne.jp>
 Description: Vector Autoregression Models (estimation of VAR, SVAR and SVEC models, lag selection, diagnostic testing, forecasting, causality analysis, forecast error variance decomposition and impulse response functions)
