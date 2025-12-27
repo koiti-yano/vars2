@@ -49,15 +49,15 @@
 #' }
 #' @export
 "vars_plot.varirf" <- function(irf, main=NULL, cap=NULL,
-                            resp_name=NULL, imp_name=NULL, dev_new=FALSE, 
-                            graph_style="pw", ...){
+                               resp_name=NULL, imp_name=NULL, dev_new=FALSE, 
+                               graph_style="pw", ...){
   
   # Check class
   if (class(irf) %in% "varirf") {
   } else{
     stop("Only 'varirf' class object from vars::irf()")
   }
-
+  
   # dev.new() if dev_new is TRUE.
   if (isTRUE(dev_new)){ dev.new() } else { } 
   
@@ -68,29 +68,46 @@
     irf_mean <- irf$irf
     irf_lower <- irf$Lower
     irf_upper <- irf$Upper
-    impulse <- irf$impulse
-    response <- irf$response
     
-    #browser()
-    # If irf$impulse or irf$response is NULL, use names from irf$irf
-    if (is.null(impulse)){
-      impulse <- names(irf_mean)
-    }
-    if (is.null(response)){
-      response <- colnames(irf_mean[[1]])
-    }
-
-    if (!is.null(imp_name) && (length(impulse)==length(imp_name))){
+    # --- 修正: 名前決定ロジックの改善 ---
+    # まずインパルスの数を確認
+    num_imp <- length(irf_mean)
+    
+    # Impulse名の決定
+    # 1. ユーザー指定がある場合は最優先
+    if (!is.null(imp_name) && (length(imp_name) == num_imp)){
       impulse <- imp_name
+    } else {
+      # 2. irfオブジェクトから取得
+      if (!is.null(irf$impulse)) {
+        impulse <- irf$impulse
+      } else if (!is.null(names(irf_mean))) {
+        impulse <- names(irf_mean)
+      } else {
+        # 3. フォールバック
+        impulse <- paste0("Impulse ", 1:num_imp)
+      }
     }
-    if (!is.null(resp_name) && (length(response) == length(resp_name))){
-      response <- resp_name
-    }
-
-    t_end <- dim(irf_mean[[1]])[1]
     
-    num_imp <- length(impulse)
-    num_rsp <- length(response)
+    # Response名の決定（とりあえず最初の要素から取得）
+    # irf_mean[[1]] が行列であることを前提
+    initial_resp_names <- colnames(irf_mean[[1]])
+    num_rsp <- length(initial_resp_names)
+    
+    if (!is.null(resp_name) && (length(resp_name) == num_rsp)){
+      response <- resp_name
+    } else {
+      if (!is.null(irf$response)) {
+        response <- irf$response
+      } else if (!is.null(initial_resp_names)) {
+        response <- initial_resp_names
+      } else {
+        response <- paste0("Response ", 1:num_rsp)
+      }
+    }
+    # ------------------------------------
+    
+    t_end <- dim(irf_mean[[1]])[1]
     
     plot_num <- 1
     for (imp in 1:num_imp) {
@@ -107,7 +124,9 @@
         } 
         
         # Title and subtitle of IRF
-        irf_title <- paste("Impulse from ",impulse[imp])
+        # ここで impulse[imp] が NULL だとタイトルが消える
+        irf_title <- paste("Impulse from ", impulse[imp])
+        
         if(is.null(cap)) {
           irf_caption <- NULL
         } else {
@@ -236,4 +255,4 @@
   }
   return(plot)
   
-  }
+}
