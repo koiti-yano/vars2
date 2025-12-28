@@ -48,7 +48,7 @@
 #' var_name=c("Emp", "Prod", "Real Wage", "Unemp"), dev_new=TRUE)
 #' }
 #' @export
-"vars_plot.varirf" <- function(irf, main=NULL, cap=NULL,
+"vars_plot.varirf" <- function(irf, main=NULL, sub=NULL, cap=NULL,
                                resp_name=NULL, imp_name=NULL, dev_new=FALSE, 
                                graph_style="pw", ...){
   
@@ -124,9 +124,9 @@
       }
     }
     
-    wrap_plots(plot_list, byrow = FALSE, axes = "collect_x",
-               ncol = num_imp, nrow = num_rsp) +
-      patchwork::plot_annotation(title = main, caption = cap)
+    plot_res <- wrap_plots(plot_list, byrow = FALSE, axes = "collect_x",
+                           ncol = num_imp, nrow = num_rsp) +
+      patchwork::plot_annotation(title = main, subtitle = sub, caption = cap)
       
   } else if (graph_style=="vic"){
     # No visible binding for global variable
@@ -189,7 +189,7 @@
     }
     
     if(!is.null(irf$Upper)){
-      plot <- ggplot2::ggplot(plot_data) +
+      plot_res <- ggplot2::ggplot(plot_data) +
         ggplot2::geom_line(ggplot2::aes(x = Time, y= value,
                                         lty = type), show.legend = F) + 
         ggplot2::labs(title = main, subtitle = sub, caption = cap) + 
@@ -201,7 +201,7 @@
         ggplot2::geom_hline(yintercept = 0,lty = 3) +
         ggplot2::scale_x_continuous(labels = as.integer) 
     } else {
-      plot <- ggplot2::ggplot(plot_data) +
+      plot_res <- ggplot2::ggplot(plot_data) +
         ggplot2::geom_line(ggplot2::aes(x = Time,y = value,
                                         lty = type), show.legend = F) +
         ggplot2::labs(title = main, subtitle = sub, caption = cap) + 
@@ -212,6 +212,6 @@
         ggplot2::scale_x_continuous(labels = as.integer) 
     }
   }
-  return(plot)
+  return(plot_res)
   
 }
